@@ -13,7 +13,7 @@ const SidebarMenu = () => {
   const currentSlug = pathname.split('/').filter(Boolean).pop()
 
   return (
-    <div className="md:block h-[500px] min-w-52 hidden border border-[#882727] rounded-2xl p-5">
+    <div className="md:block h-[500px] hidden border border-[#882727] rounded-2xl p-5">
       {menuList.map((item, index) => {
         return (
           <div

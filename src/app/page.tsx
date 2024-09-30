@@ -81,7 +81,7 @@ export default function Home() {
                 height={600}
               ></Image>
             </div>
-            <div className="text-white md:w-2/6 text-center  md:text-left">
+            <div className="text-white md:w-3/12 text-center  md:text-left">
               <Image
                 className="h-[300px] text-center md:text-left mx-auto md:mx-0"
                 src="/assets/images/restaurant-photo3.png"

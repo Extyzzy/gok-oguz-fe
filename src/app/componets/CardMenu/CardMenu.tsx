@@ -11,7 +11,7 @@ interface CardMenuProps {
 const CardMenu = ({ title, imagePath, weight, description, price }: CardMenuProps) => {
   return (
     <div
-      className="bg-beige hover:shadow rounded-2xl w-[80%] lg:w-[28%] sm:w-[80%] sm:h-[310px] h-[275px] border border-[#882727] overflow-hidden">
+      className="bg-beige hover:shadow rounded-2xl sm:h-[310px] h-[275px] border border-[#882727] overflow-hidden">
       {(imagePath && (
         <Image
           src={imagePath}

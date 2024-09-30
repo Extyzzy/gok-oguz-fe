@@ -28,7 +28,7 @@ export default function RootLayout({
       <Header />
       <main className="bg-beige h-full md:">
         <div
-          className="bg-[url('/assets/svg/ornament.svg')] bg-[length:6rem] lg:bg-[length:12rem]  bg-repeat-y bg-right h-auto w-full container mx-auto">
+          className="bg-[url('/assets/svg/ornament.svg')] bg-[length:6rem] lg:bg-[length:12rem] bg-repeat-y bg-right h-auto w-full container mx-auto">
 
           {children}
 
