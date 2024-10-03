@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Button from './componets/Button/button'
 import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/navigation'
+// @ts-ignore
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -63,7 +64,7 @@ export default function Home() {
                   ))}
                 </Slider>
           </div>
-    
+
         </div>
       </section>
 
