@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="flex justify-center md:pb-0 pb-12 w-[80%] md:w-auto md:text-lg text-base">
       <div className="pb-8">
         <Image
-          src="/assets/svg/Black_barashek.svg"
+          src="/assets/svg/Red_barashek.svg"
           alt="barashek"
           width={240}
           height={270}

@@ -64,7 +64,7 @@ const Contacts = () => {
                 <span className='bg-black rounded w-6 text-center mb-1 text-white'>
                   {t(`week.${day}`)}
                 </span>
-                10:00 - 22:00{' '}
+                10:00 - 23:00{' '}
                 {europeanDate === index + 1 &&
                   (isOpen ? (
                     <span className='text-green-500'>{t('contacts.open')}</span>

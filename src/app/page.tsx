@@ -4,10 +4,31 @@ import Image from 'next/image'
 import Button from './componets/Button/button'
 import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/navigation'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Home() {
   const { t } = useTranslation()
   const router = useRouter()
+  const settings = {
+    dots: false,
+    arrows: false,
+    autoplay: true,
+    infinite: true,
+    fade: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+
+   const images = [
+    '/assets/images/surpa.png',
+    'https://straus.s3.amazonaws.com/media/CACHE_IMG/products2/a8e68509f9e34fd381d8070e2b7aa3eb/96e39763f14900ac5719e9ec719a8c78.webp',
+    'https://straus.s3.amazonaws.com/media/CACHE_IMG/products2/b91acd91a22e4ce3bfc6e9ebccce8fd2/c7fc65dc1036c355c949ddb35f70f5b8.webp',
+    'https://straus.s3.amazonaws.com/media/CACHE_IMG/products2/22070080a0234aef9e1c28d15fc8c342/f8882cf91547433b16347bb00612fe49.webp',
+    'https://straus.s3.amazonaws.com/media/CACHE_IMG/products2/fef6e61bff0044db8d42f26fc6e86888/dbcd5b36c3d4bdca29a11dd098a544f9.webp'
+  ];
 
   return (
     <>
@@ -28,13 +49,21 @@ export default function Home() {
         </div>
         <div
           className="hidden md:flex items-center bg-burgundy w-2/5 md:h-[450px] h-[400px] rounded-tl-full rounded-bl-full md:absolute right-0">
-          <Image
-            src="/assets/images/surpa.png"
-            alt="Surpa"
-            width={350}
-            height={350}
-            className="ml-12"
-          />
+               <div className='w-[400px] ml-8'>
+                <Slider {...settings}>
+                  {images.map((src, index) => (
+                    <div key={index}>
+                      <Image
+                      src={src}
+                      alt="Steak pork"
+                      width={350}
+                      height={350}
+                      className="w-[350px] h-[350px] object-cover rounded-full mx-auto" />
+                    </div>
+                  ))}
+                </Slider>
+          </div>
+    
         </div>
       </section>
 
