@@ -5,20 +5,46 @@ const useGetMenuCardsItems = () => {
 
   return [
     {
-      image:
-        'https://straus.s3.amazonaws.com/media/CACHE_IMG/products2/66e1df470dca4046bab46a195f10f941/d353a15072aeb4ca0635df1ef66e0a4c.webp',
-      title: t('menuCardsItems.carneGherghievschi'),
-      description: t('menuCardsItems.descCarne'),
-      group: 'main_dish',
-      weight: 400,
-      price: 353,
+      title: t('menuCardsItems.gustaricaGokOguz'),
+      description: t('menuCardsItems.descGustaricaGokOguz'),
+      group: 'bucate_sef',
+      weight: 1000,
+      price: 367,
     },
     {
-      title: t('menuCardsItems.friptura'),
-      description: t('menuCardsItems.descFriptura'),
-      group: 'lamb',
-      weight: 400,
-      price: 194,
+      title: t('menuCardsItems.carneGheorghievschi'),
+      description: t('menuCardsItems.descCarneGheorghievschi'),
+      group: 'bucate_sef',
+      weight: 650,
+      price: 339,
+    },
+    {
+      title: t('menuCardsItems.cavurmaFierbinteMiel'),
+      description: t('menuCardsItems.descCavurmaFierbinteMiel'),
+      group: 'bucate_sef',
+      weight: 300,
+      price: 247,
+    },
+    {
+      title: t('menuCardsItems.surpaSef'),
+      description: t('menuCardsItems.descSurpaSef'),
+      group: 'bucate_sef',
+      weight: 500,
+      price: 247,
+    },
+    {
+      title: t('menuCardsItems.lagmanSef'),
+      description: t('menuCardsItems.descLagmanSef'),
+      group: 'bucate_sef',
+      weight: 450,
+      price: 217,
+    },
+    {
+      title: t('menuCardsItems.costitaMielSos'),
+      description: t('menuCardsItems.descCostitaMielSos'),
+      group: 'bucate_sef',
+      weight: 100,
+      price: 123,
     },
     {
       image:
@@ -27,7 +53,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descBudjak'),
       group: 'main_dish',
       weight: 400,
-      price: 249,
+      price: 207,
     },
     {
       image:
@@ -36,7 +62,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descBorsRosu'),
       group: 'supe',
       weight: 350,
-      price: 93,
+      price: 87,
     },
     {
       title: t('menuCardsItems.musafiri'),
@@ -50,35 +76,28 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descArdeiUmplut'),
       group: 'main_dish',
       weight: 150,
+      price: 115,
+    },
+    {
+      title: t('menuCardsItems.ardeiDulce'),
+      description: t('menuCardsItems.descArdeiDulce'),
+      group: 'main_dish',
+      weight: 250,
       price: 107,
-    },
-    {
-      title: t('menuCardsItems.ardeiDulce'),
-      description: t('menuCardsItems.descArdeiDulce'),
-      group: 'main_dish',
-      weight: 250,
-      price: 97,
-    },
-    {
-      title: t('menuCardsItems.ardeiDulce'),
-      description: t('menuCardsItems.descArdeiDulce'),
-      group: 'main_dish',
-      weight: 250,
-      price: 97,
     },
     {
       title: t('menuCardsItems.laRachiu'),
       description: t('menuCardsItems.descLaRachiu'),
       group: 'main_dish',
       weight: 360,
-      price: 151,
+      price: 161,
     },
     {
       title: t('menuCardsItems.dinSomon'),
       description: t('menuCardsItems.descDinSomon'),
       group: 'main_dish',
       weight: 130,
-      price: 179,
+      price: 197,
     },
     {
       title: t('menuCardsItems.heringCeapa'),
@@ -98,7 +117,7 @@ const useGetMenuCardsItems = () => {
       title: t('menuCardsItems.salataBulgara'),
       description: t('menuCardsItems.descSalataBulgara'),
       group: 'salads',
-      weight: 300,
+      weight: 220,
       price: 93,
     },
     {
@@ -106,35 +125,35 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descSalataIliderim'),
       group: 'salads',
       weight: 350,
-      price: 97,
+      price: 105,
     },
     {
       title: t('menuCardsItems.salataDeSarbatoare'),
       description: t('menuCardsItems.descSalataDeSarbatoare'),
       group: 'salads',
-      weight: 300,
+      weight: 220,
       price: 163,
     },
     {
       title: t('menuCardsItems.salataPlacereaSef'),
       description: t('menuCardsItems.descPlacereaSef'),
       group: 'salads',
-      weight: 300,
-      price: 97,
+      weight: 220,
+      price: 108,
     },
     {
       title: t('menuCardsItems.salataFierbinte'),
       description: t('menuCardsItems.descSalataFierbinte'),
       group: 'salads',
       weight: 300,
-      price: 137,
+      price: 157,
     },
     {
       title: t('menuCardsItems.salataContemporan'),
       description: t('menuCardsItems.descSalataContemporan'),
       group: 'salads',
       weight: 220,
-      price: 121,
+      price: 108,
     },
     {
       title: t('menuCardsItems.salataDeLegume'),
@@ -162,7 +181,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descCiorbaComrat'),
       group: 'supe',
       weight: 355,
-      price: 93,
+      price: 97,
     },
     {
       image:
@@ -171,7 +190,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descCiorbaGaina'),
       group: 'supe',
       weight: 350,
-      price: 93,
+      price: 79,
     },
     {
       image:
@@ -180,7 +199,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descBorsVerde'),
       group: 'supe',
       weight: 350,
-      price: 132,
+      price: 105,
     },
     {
       image:
@@ -189,7 +208,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descSupaHarcio'),
       group: 'supe',
       weight: 330,
-      price: 146,
+      price: 117,
     },
     {
       image:
@@ -198,7 +217,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descBulionMiel'),
       group: 'supe',
       weight: 300,
-      price: 137,
+      price: 109,
     },
     {
       title: t('menuCardsItems.tarator'),
@@ -213,8 +232,8 @@ const useGetMenuCardsItems = () => {
       title: t('menuCardsItems.surpa'),
       description: t('menuCardsItems.descSurpa'),
       group: 'supe',
-      weight: 520,
-      price: 279,
+      weight: 500,
+      price: 247,
     },
     {
       image:
@@ -223,7 +242,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descLagman'),
       group: 'supe',
       weight: 450,
-      price: 238,
+      price: 217,
     },
     {
       image:
@@ -232,7 +251,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descPieptMiel'),
       group: 'lamb',
       weight: 440,
-      price: 194,
+      price: 169,
     },
     {
       image:
@@ -240,8 +259,8 @@ const useGetMenuCardsItems = () => {
       title: t('menuCardsItems.kebabMiel'),
       description: t('menuCardsItems.descKebabMiel'),
       group: 'lamb',
-      weight: 350,
-      price: 237,
+      weight: 340,
+      price: 189,
     },
     {
       image:
@@ -250,14 +269,14 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descGhiveciMiel'),
       group: 'lamb',
       weight: 350,
-      price: 204,
+      price: 178,
     },
     {
       title: t('menuCardsItems.fripturaBulgareasca'),
       description: t('menuCardsItems.descFripturaBulgareasca'),
       group: 'lamb',
-      weight: 300,
-      price: 159,
+      weight: 350,
+      price: 169,
     },
     {
       image:
@@ -265,8 +284,8 @@ const useGetMenuCardsItems = () => {
       title: t('menuCardsItems.pirinci'),
       description: t('menuCardsItems.descPirinci'),
       group: 'lamb',
-      weight: 400,
-      price: 194,
+      weight: 350,
+      price: 159,
     },
     {
       image:
@@ -274,15 +293,15 @@ const useGetMenuCardsItems = () => {
       title: t('menuCardsItems.fasoleMiel'),
       description: t('menuCardsItems.descFasoleMiel'),
       group: 'lamb',
-      weight: 400,
-      price: 194,
+      weight: 350,
+      price: 159,
     },
     {
       title: t('menuCardsItems.oiteSos'),
       description: t('menuCardsItems.descOiteSos'),
       group: 'lamb',
       weight: 500,
-      price: 167,
+      price: 182,
     },
     {
       title: t('menuCardsItems.mielInabusit'),
@@ -296,14 +315,14 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descManti'),
       group: 'lamb',
       weight: 550,
-      price: 327,
+      price: 337,
     },
     {
       title: t('menuCardsItems.suvanniPork'),
       description: t('menuCardsItems.descSuvanniPork'),
       group: 'pork',
       weight: 300,
-      price: 167,
+      price: 187,
     },
     {
       image:
@@ -312,7 +331,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descSteakPork'),
       group: 'pork',
       weight: 380,
-      price: 238,
+      price: 197,
     },
     {
       image:
@@ -321,35 +340,35 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descFrigaruiPork'),
       group: 'pork',
       weight: 390,
-      price: 229,
+      price: 199,
     },
     {
       title: t('menuCardsItems.mangiaGaina'),
       description: t('menuCardsItems.descMangiaGaina'),
       group: 'chicken',
       weight: 370,
-      price: 139,
+      price: 178,
     },
     {
       title: t('menuCardsItems.mangiaGainaSmantana'),
       description: t('menuCardsItems.descMangiaGainaSmantana'),
       group: 'chicken',
       weight: 370,
-      price: 139,
+      price: 178,
     },
     {
       title: t('menuCardsItems.fileuGaina'),
       description: t('menuCardsItems.descFileuGaina'),
       group: 'chicken',
       weight: 220,
-      price: 157,
+      price: 167,
     },
     {
       title: t('menuCardsItems.cavurmaGaina'),
       description: t('menuCardsItems.descCavurmaGaina'),
       group: 'chicken',
-      weight: 310,
-      price: 147,
+      weight: 250,
+      price: 167,
     },
     {
       image:
@@ -367,7 +386,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descFasoleGaina'),
       group: 'chicken',
       weight: 400,
-      price: 171,
+      price: 139,
     },
     {
       title: t('menuCardsItems.somonGratar'),
@@ -381,7 +400,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descCavurmaSomon'),
       group: 'fish',
       weight: 300,
-      price: 167,
+      price: 227,
     },
     {
       title: t('menuCardsItems.crapPrajit'),
@@ -402,28 +421,28 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descSalauLegume'),
       group: 'fish',
       weight: 500,
-      price: 197,
+      price: 198,
     },
     {
       title: t('menuCardsItems.frigaruiMielOs'),
       description: t('menuCardsItems.descFrigaruiMielOs'),
       group: 'grilled_food',
       weight: 440,
-      price: 247,
+      price: 287,
     },
     {
       title: t('menuCardsItems.fileuVitelGratar'),
       description: t('menuCardsItems.descFileuVitelGratar'),
       group: 'grilled_food',
       weight: 340,
-      price: 325,
+      price: 345,
     },
     {
       title: t('menuCardsItems.frigaruiPorkGarnitura'),
       description: t('menuCardsItems.descFrigaruiPorkGarnitura'),
       group: 'grilled_food',
       weight: 390,
-      price: 189,
+      price: 199,
     },
     {
       title: t('menuCardsItems.steakPorkGarnitura'),
@@ -451,7 +470,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descKebabGratar'),
       group: 'grilled_food',
       weight: 340,
-      price: 179,
+      price: 189,
     },
     {
       image:
@@ -459,15 +478,15 @@ const useGetMenuCardsItems = () => {
       title: t('menuCardsItems.cavurmaMielMamaliga'),
       description: t('menuCardsItems.descCavurmaMielMamaliga'),
       group: 'mamaliga',
-      weight: 500,
-      price: 342,
+      weight: 560,
+      price: 287,
     },
     {
       title: t('menuCardsItems.cavurmaSomonMamaliga'),
       description: t('menuCardsItems.descCavurmaSomonMamaliga'),
       group: 'mamaliga',
       weight: 560,
-      price: 237,
+      price: 267,
     },
     {
       image:
@@ -476,13 +495,13 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descSuvanniPorkMamaliga'),
       group: 'mamaliga',
       weight: 560,
-      price: 284,
+      price: 237,
     },
     {
       title: t('menuCardsItems.mangiaGainaRosuMamaliga'),
       description: t('menuCardsItems.descmangiaGainaRosuMamaliga'),
       group: 'mamaliga',
-      weight: 610,
+      weight: 530,
       price: 218,
     },
     {
@@ -496,7 +515,7 @@ const useGetMenuCardsItems = () => {
       title: t('menuCardsItems.mangiaGainaCiuperciMamaliga'),
       description: t('menuCardsItems.descMangiaGainaCiuperciMamaliga'),
       group: 'mamaliga',
-      weight: 480,
+      weight: 450,
       price: 218,
     },
     {
@@ -505,8 +524,8 @@ const useGetMenuCardsItems = () => {
       title: t('menuCardsItems.cavurmaGainaMamaliga'),
       description: t('menuCardsItems.descCavurmaGainaMamaliga'),
       group: 'mamaliga',
-      weight: 470,
-      price: 262,
+      weight: 560,
+      price: 229,
     },
     {
       image:
@@ -514,8 +533,8 @@ const useGetMenuCardsItems = () => {
       title: t('menuCardsItems.mamaligaBranzaSmantana'),
       description: t('menuCardsItems.descMamaligaBranzaSmantana'),
       group: 'garnishes',
-      weight: 300,
-      price: 107,
+      weight: 270,
+      price: 77,
     },
     {
       image:
@@ -524,7 +543,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descOrezCascaval'),
       group: 'garnishes',
       weight: 180,
-      price: 84,
+      price: 67,
     },
     {
       title: t('menuCardsItems.cartofiCopti'),
@@ -554,7 +573,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descTaiteiBranza'),
       group: 'garnishes',
       weight: 250,
-      price: 148,
+      price: 109,
     },
     {
       image:
@@ -562,8 +581,8 @@ const useGetMenuCardsItems = () => {
       title: t('menuCardsItems.legumeCoapte'),
       description: t('menuCardsItems.descLegumeCoapte'),
       group: 'garnishes',
-      weight: 100,
-      price: 46,
+      weight: 250,
+      price: 109,
     },
     {
       title: t('menuCardsItems.muraturi'),
@@ -577,27 +596,27 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descMujdei'),
       group: 'diverse',
       weight: 50,
-      price: 21,
+      price: 25,
     },
     {
       title: t('menuCardsItems.maioneza'),
       description: t('menuCardsItems.descMaioneza'),
       group: 'diverse',
-      weight: 50,
+      weight: 30,
       price: 16,
     },
     {
       title: t('menuCardsItems.ketchup'),
       description: t('menuCardsItems.descKetchup'),
       group: 'diverse',
-      weight: 50,
+      weight: 30,
       price: 16,
     },
     {
       title: t('menuCardsItems.smantana'),
       description: t('menuCardsItems.descSmantana'),
       group: 'diverse',
-      weight: 100,
+      weight: 80,
       price: 22,
     },
     {
@@ -766,7 +785,7 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descArdeiIute'),
       group: 'diverse',
       weight: 1,
-      price: 4,
+      price: 7,
     },
     {
       title: t('menuCardsItems.lavash'),
@@ -780,14 +799,14 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descGozlemeCarneBranza'),
       group: 'bread',
       weight: 110,
-      price: 77,
+      price: 67,
     },
     {
       title: t('menuCardsItems.gozlemeLegume'),
       description: t('menuCardsItems.descGozlemeLegume'),
       group: 'bread',
       weight: 110,
-      price: 66,
+      price: 57,
     },
     {
       title: t('menuCardsItems.lavashGratar'),
@@ -838,7 +857,14 @@ const useGetMenuCardsItems = () => {
       description: t('menuCardsItems.descGevrek'),
       group: 'dessert',
       weight: 150,
-      price: 143,
+      price: 117,
+    },
+    {
+      title: t('menuCardsItems.pruneUmplute'),
+      description: t('menuCardsItems.descPruneUmplute'),
+      group: 'dessert',
+      weight: 150,
+      price: 117,
     },
     {
       title: t('menuCardsItems.inghetataPlombir'),
@@ -884,7 +910,7 @@ const useGetMenuCardsItems = () => {
     },
     {
       image:
-        'https://straus.s3.amazonaws.com/media/CACHE_IMG/products2/95e781a63c6a462380b0200adb9975e9/516934c8bd54b0040da344ebb02d751d.webp',
+        'https://straus.s3.amazonaws.com/media/CACHE_IMG/products2/df37f54221b94332b0b71be480e3fa7b/8b72f11ba7ef2bb77757f89d8e43748e.webp',
       title: t('menuCardsItems.vinAlbLitru'),
       description: t('menuCardsItems.descVinAlbLitru'),
       group: 'beverages',
@@ -893,7 +919,7 @@ const useGetMenuCardsItems = () => {
     },
     {
       image:
-        'https://straus.s3.amazonaws.com/media/CACHE_IMG/products2/df37f54221b94332b0b71be480e3fa7b/8b72f11ba7ef2bb77757f89d8e43748e.webp',
+        'https://straus.s3.amazonaws.com/media/CACHE_IMG/products2/95e781a63c6a462380b0200adb9975e9/516934c8bd54b0040da344ebb02d751d.webp',
       title: t('menuCardsItems.vinRosuLitru'),
       description: t('menuCardsItems.descVinRosuLitru'),
       group: 'beverages',

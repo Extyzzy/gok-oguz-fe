@@ -5,8 +5,18 @@
     "contacts": "Contacte"
   },
   "menuCardsItems": {
-    "carneGherghievschi": "Carne \"Po-Gheorghievski",
-    "descCarne": "Pilaf,legume la cuptor.",
+    "gustaricaGokOguz": "Gustărică “Gök-Oguz” (pentru doi)",
+    "descGustaricaGokOguz": "Aperitiv de cavurma rece, slănină, brânză și legume proaspete.",
+    "carneGheorghievschi": "Carne \"Po-Gheorghievski",
+    "descCarneGheorghievschi": "Pilaf,miel cu legume la cuptor.",
+    "cavurmaFierbinteMiel": "Cavurma fierbinte din carne de miel",
+    "descCavurmaFierbinteMiel": "Miel tocat în legume cu condimente.",
+    "surpaSef": "Şurpa",
+    "descSurpaSef": "Miel fiert cu os în supă cu legume și condimente.",
+    "lagmanSef": "Lagman",
+    "descLagmanSef": "Carne de miel cu supă și tăiței de casă",
+    "costitaMielSos": "Costiţă de miel coaptă cu sos (la cântar)",
+    "descCostitaMielSos": "Carne de miel la cuptor cu sos (vin, miere,condimente).",
     "friptura": "Friptură bulgărească",
     "descFriptura": "Carne de miel.",
     "budjak": "Gustare ”Budjak”",
@@ -247,6 +257,7 @@
     "descVinRosuLitru": "Un litru de vin roşu."
   },
   "menuList": {
+    "bucate_sef": "Bucatele Șefului",
     "main_dish": "Gustări",
     "lamb": "Carne de miel",
     "chicken": "Carne de pui",
@@ -288,9 +299,6 @@
     "gagauz_location": "Găgăuzia este o regiune autonomă situată în sudul Republicii Moldova, cunoscută pentru populația sa predominant găgăuză, un grup etnic de origine turcică.",
     "gagauz_languages": "Cultura găgăuză este unică și distinctă, îmbinând influențe turcice cu tradițiile locale moldovenești. Limba găgăuză, parte a familiei limbilor turcice, este vorbită alături de limba română și rusă. Regiunea este renumită pentru obiceiurile sale tradiționale, festivalurile culturale și bucătăria specifică, care reflectă o combinație de arome și tehnici culinare moștenite de la strămoșii turcici și adaptate condițiilor locale.",
     "gagauz_example": "Găgăuzia este un exemplu de diversitate etnică și culturală în Moldova, contribuind la bogăția culturală a țării."
-  },
-  "menu": {
-    "title": "Meniul"
   },
   "footer": {},
   "contacts": {

@@ -5,6 +5,18 @@
     "contacts": "Контакты"
   },
   "menuCardsItems": {
+    "gustaricaGokOguz": "Закуска 'Гёк-Огуз' (на двоих)",
+    "descGustaricaGokOguz": "Холодная закуска из кавурмы, бекона, сыра и свежих овощей.",
+    "carneGheorghievschi": "Мясо 'По-Георгиевски'",
+    "descCarneGheorghievschi": "Плов, запечённая баранина с овощами.",
+    "cavurmaFierbinteMiel": "Горячая кавурма из баранины",
+    "descCavurmaFierbinteMiel": "Мелко нарезанная баранина с овощами и специями.",
+    "surpaSef": "Шурпа",
+    "descSurpaSef": "Варёная баранина с костью в супе с овощами и специями.",
+    "lagmanSef": "Лагман",
+    "descLagmanSef": "Баранина с супом и домашней лапшой.",
+    "costitaMielSos": "Запечённые бараньи рёбрышки с соусом (по весу)",
+    "descCostitaMielSos": "Запечённая баранина с соусом (вино, мёд, специи).",
     "carneGherghievschi": "Мясо «По-Георгиевски»",
     "descCarne": "Плов, запеченные овощи.",
     "friptura": "Болгарская жаркое",
@@ -247,6 +259,7 @@
     "descVinRosuLitru": "Литр красного вина."
   },
   "menuList": {
+    "bucate_sef": "Блюда от шефа",
     "main_dish": "Закуски",
     "lamb": "Баранина",
     "chicken": "Курица",

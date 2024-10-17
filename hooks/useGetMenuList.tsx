@@ -5,6 +5,11 @@ const useGetMenuList = () => {
 
   return [
     {
+      iconSrc: '/assets/svg/menuList/chef.svg',
+      name: t('menuList.bucate_sef'),
+      slug: 'bucate_sef',
+    },
+    {
       iconSrc: '/assets/svg/menuList/gustari.svg',
       name: t('menuList.main_dish'),
       slug: 'main_dish',
@@ -23,6 +28,11 @@ const useGetMenuList = () => {
       iconSrc: '/assets/svg/menuList/fish.svg',
       name: t('menuList.fish'),
       slug: 'fish',
+    },
+    {
+      iconSrc: '/assets/svg/menuList/grill.svg',
+      name: t('menuList.grilled_food'),
+      slug: 'grilled_food',
     },
     {
       iconSrc: '/assets/svg/menuList/garnish.svg',
@@ -48,6 +58,16 @@ const useGetMenuList = () => {
       iconSrc: '/assets/svg/menuList/mamaliga.svg',
       name: t('menuList.mamaliga'),
       slug: 'mamaliga',
+    },
+    {
+      iconSrc: '/assets/svg/menuList/dessert.svg',
+      name: t('menuList.dessert'),
+      slug: 'dessert',
+    },
+    {
+      iconSrc: '/assets/svg/menuList/beverages.svg',
+      name: t('menuList.beverages'),
+      slug: 'beverages',
     },
   ]
 }

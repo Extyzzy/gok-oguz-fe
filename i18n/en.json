@@ -5,6 +5,18 @@
     "contacts": "Contacts"
   },
   "menuCardsItems": {
+    "gustaricaGokOguz": "Gustărică 'Gök-Oguz' (for two)",
+    "descGustaricaGokOguz": "Cold cavurma appetizer, bacon, cheese, and fresh vegetables.",
+    "carneGheorghievschi": "Meat 'Po-Gheorghievski'",
+    "descCarneGheorghievschi": "Pilaf, lamb with oven-baked vegetables.",
+    "cavurmaFierbinteMiel": "Hot cavurma made from lamb",
+    "descCavurmaFierbinteMiel": "Minced lamb with vegetables and spices.",
+    "surpaSef": "Şurpa",
+    "descSurpaSef": "Boiled lamb with bone in a soup with vegetables and spices.",
+    "lagmanSef": "Lagman",
+    "descLagmanSef": "Lamb with soup and homemade noodles.",
+    "costitaMielSos": "Baked lamb ribs with sauce (by weight)",
+    "descCostitaMielSos": "Oven-baked lamb with sauce (wine, honey, spices).",
     "carneGherghievschi": "Meat «Po-Gheorghievski»",
     "descCarne": "Pilaf, baked vegetables.",
     "friptura": "Bulgarian Roast",
@@ -246,6 +258,7 @@
     "descVinRosuLitru": "One liter of red wine."
   },
   "menuList": {
+    "bucate_sef": "Chef's Specials",
     "main_dish": "Main dish",
     "lamb": "Lamb",
     "chicken": "Chicken",
@@ -255,7 +268,7 @@
     "grilled_food": "Grilled Dishes",
     "garnishes": "Garnishes",
     "sauces": "Sauces",
-    "bread": "Gözleme, Lavash, and Bread",
+    "bread": "Gözleme/Lavash/Bread",
     "diverse": "Miscellaneous",
     "salads": "Salads",
     "supe": "Soups",
