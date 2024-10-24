@@ -20,7 +20,7 @@ const Menu: FC<MenuProps> = ({ params }) => {
   const filteredCards = menuCardsList.filter((card) => card.group === params.slug)
 
   return (
-      <div className='pt-2 mb-4'>
+      <div className='pt-2 mb-4 mx-2 sm:mx-0'>
           <Title classNames='text-center'>{t('menu.title')}</Title>
           <div className="flex gap-8 mt-2">
               <SidebarMenu/>
