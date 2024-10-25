@@ -11,7 +11,7 @@ const Contacts = () => {
   const todayDate = new Date()
   const europeanDate = !todayDate.getDay() ? 6 : todayDate.getDay()
   const hour = todayDate.getHours()
-  const isOpen = hour >= 10 && hour < 22
+  const isOpen = hour >= 10 && hour < 23
 
   return (
     <div className='lg:mb-38 mb-16 relative px-4 sm:px-0'>
@@ -67,9 +67,9 @@ const Contacts = () => {
                 10:00 - 23:00{' '}
                 {europeanDate === index + 1 &&
                   (isOpen ? (
-                    <span className='text-green-500'>{t('contacts.open')}</span>
+                    <span className='text-green-500'>{t('contacts.openNow')}</span>
                   ) : (
-                    <span className='text-red-500'>{t('contacts.closed')}</span>
+                    <span className='text-red-500'>{t('contacts.closedNow')}</span>
                   ))}
               </li>
             )

@@ -310,8 +310,8 @@
   "contacts": {
     "title": "Контакты",
     "work_hours": "График работы",
-    "open": "Открыто",
-    "closed": "Закрыто"
+    "openNow": "На момент открыт ",
+    "closedNow": "На момент закрыт " 
   },
   "week": {
     "Monday": "П",

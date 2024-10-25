@@ -309,8 +309,8 @@
   "contacts": {
     "title": "Contacts",
     "work_hours": "Open hours",
-    "open": "Open",
-    "closed": "Closed"
+    "openNow": "Open at the moment",
+    "closedNow": "Closed at the moment"
   },
   "week": {
     "Monday": "M",

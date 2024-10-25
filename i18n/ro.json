@@ -307,8 +307,8 @@
   "contacts": {
     "title": "Contacte",
     "work_hours": "Orele de lucru",
-    "open": "Deschis",
-    "closed": "Închis"
+    "openNow": "Deschis la moment",
+    "closedNow": "Închis la moment"
   },
   "week": {
     "Monday": "L",
