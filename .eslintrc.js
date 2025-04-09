@@ -10,29 +10,21 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  extends: [
-    'next/core-web-vitals',
-    'prettier',
-  ],
+  extends: ['next/core-web-vitals', 'prettier'],
   settings: {
     'import/resolver': {
       node: {
         paths: ['.'],
       },
       alias: {
-        map: [
-          ['@/components', './src/app/components'],
-
-        ],
+        map: [['@/components', './src/app/components']],
       },
     },
     react: {
       version: 'detect',
     },
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
     'import/prefer-default-export': 'off',
     'prefer-promise-reject-errors': 'off',
@@ -42,9 +34,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
-    'react/no-unstable-nested-components': [
-      'warn',
-      { allowAsProps: true },
-    ],
+    'react/no-unstable-nested-components': ['warn', { allowAsProps: true }],
   },
 }

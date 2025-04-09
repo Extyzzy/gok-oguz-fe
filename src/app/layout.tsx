@@ -1,45 +1,36 @@
-'use client'
-
-import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
+import type { Metadata, Viewport } from 'next'
 import { Onest } from 'next/font/google'
 import './globals.css'
-import Header from '@/app/componets/Header'
-import Footer from '@/app/componets/Footer'
-import MobileMenu from './componets/mobileMenu/mobileMenu'
-import { I18nextProvider } from 'react-i18next'
-import i18n from '../../i18n/i18n'
+import QueryProvider from '@/queryClient/QueryClientProvider'
+import { NextUIProvider } from '@nextui-org/react'
+import { AuthProvider } from '@/context/AuthContext'
 
 const onest = Onest({ subsets: ['latin'] })
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: 'Gok-oguz',
   description: '',
 }
 
-export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
-  children: React.ReactNode
-}>) {
+export const viewport: Viewport = {
+  width: 'device-width',
+  height: 'device-height',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
+
+export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <I18nextProvider i18n={i18n}>
-      <html lang="en">
+    <html lang='en' suppressHydrationWarning>
       <body className={onest.className}>
-      <Header />
-      <main className="bg-beige h-full md:">
-        <div
-          className="bg-[url('/assets/svg/ornament.svg')] bg-[length:6rem] lg:bg-[length:12rem] bg-repeat-y bg-right h-auto w-full container mx-auto">
-
-          {children}
-
-
-          <Footer />
-
-          <MobileMenu />
-        </div>
-      </main>
+        <NextUIProvider>
+          <QueryProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </QueryProvider>
+        </NextUIProvider>
       </body>
-      </html>
-    </I18nextProvider>
+    </html>
   )
 }
