@@ -1,0 +1,47 @@
+'use client'
+
+import { useAuth } from '@/context/AuthContext'
+import { useUsersQuery } from '@/queries/useUsersQuery'
+import { Button, Card } from '@nextui-org/react'
+
+export default function AdminDashboardPage() {
+  const { user, logout } = useAuth()
+
+  const { data: users } = useUsersQuery()
+
+  return (
+    <div className='p-6'>
+      <div className='flex justify-between items-center mb-6'>
+        <h1 className='text-2xl font-bold'>Admin Dashboard</h1>
+        <Button color='danger' onClick={logout}>
+          Logout
+        </Button>
+      </div>
+
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <Card className='p-4'>
+          <h2 className='text-lg font-semibold'>Welcome, {user?.name}</h2>
+          <p className='text-gray-600'>{user?.email}</p>
+          <span className='inline-block mt-2 px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs'>
+            Admin
+          </span>
+        </Card>
+
+        {/* Add your admin dashboard widgets here */}
+
+        {users && (
+          <Card className='p-4'>
+            <h2 className='text-lg font-semibold'>Users</h2>
+            <ul>
+              {users.map((user) => (
+                <li key={user.id}>
+                  {user.first_name} {user.last_name}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        )}
+      </div>
+    </div>
+  )
+}
