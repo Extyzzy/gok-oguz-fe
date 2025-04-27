@@ -1,11 +1,10 @@
 'use client'
 
 import { Button, Card, Input } from '@nextui-org/react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import api from '@/services/api'
-import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024 // 2MB
 const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/png']
@@ -21,73 +20,48 @@ const DishSchema = z.object({
   weight: z.string().min(1, 'Weight is required'),
   price: z.string().regex(/^\d+(\.\d{1,2})?$/, 'Cost must be a valid number'),
   category_id: z.string().min(1, 'Category is required'),
+  image: z.string().optional(),
   file: z
-    .any()
-    .refine((files) => files?.length > 0, { message: 'At least one file is required' })
-    .transform((files) => files[0])
-    .refine((file) => file.size <= MAX_FILE_SIZE, {
+    .instanceof(File)
+    .optional()
+    .refine((file) => !file || file.size <= MAX_FILE_SIZE, {
       message: `File size must be less than ${MAX_FILE_SIZE / 1024 / 1024}MB`,
     })
-    .refine((file) => ALLOWED_FILE_TYPES.includes(file.type), {
+    .refine((file) => !file || ALLOWED_FILE_TYPES.includes(file.type), {
       message: `Only ${ALLOWED_FILE_TYPES.join(', ')} files are allowed`,
     }),
 })
 
-export default function AdminDishCreatePage() {
-  const router = useRouter()
-  const form = useForm({
+export type FormDataDish = z.infer<typeof DishSchema>
+
+interface FormDishProps {
+  initialValues: FormDataDish
+  onSubmit: (data: FormDataDish) => void
+}
+
+const FormDish = ({ initialValues, onSubmit }: FormDishProps) => {
+  const [previewUrl, setPreviewUrl] = useState<string | null>(
+    (process.env.NEXT_PUBLIC_BACK_END_URL || '') + initialValues?.image,
+  )
+
+  const [file, setFile] = useState<File | null>()
+
+  const form = useForm<z.infer<typeof DishSchema>>({
     resolver: zodResolver(DishSchema),
-    defaultValues: {
-      name: '',
-      name_en: '',
-      name_ro: '',
-      name_ru: '',
-      description_en: '',
-      description_ro: '',
-      description_ru: '',
-      weight: '',
-      price: '',
-      category_id: '',
-    },
+    defaultValues: { ...initialValues },
   })
 
-  const submitForm = async (data: z.infer<typeof DishSchema>) => {
-    try {
-      console.log('Form submitted:', data)
-
-      const response = await api.post(
-        '/dishes',
-        {
-          ...data,
-          category_id: Number(data.category_id),
-          weight: Number(data.weight),
-          price: Number(data.price),
-          file: data.file,
-        },
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        },
-      )
-
-      if (response.status === 201) {
-        console.log('Dish created successfully:', response.data)
-        router.push('/admin/dishes')
-      }
-
-      console.log('Response:', response)
-    } catch (error) {
-      console.error('Error submitting form:', error)
-    }
+  const onSubmitHandler = (data: FormDataDish) => {
+    onSubmit({
+      ...data,
+      file: file || undefined,
+    })
   }
 
-  console.log('Form state:', form.formState.errors)
   return (
-    <form onSubmit={form.handleSubmit(submitForm)}>
+    <form onSubmit={form.handleSubmit(onSubmitHandler)}>
       <Card className='p-4 space-y-4'>
-        <h2 className='text-lg font-semibold'>Create a new dish</h2>
-        <p className='text-gray-600'>Use the form below to create a new dish.</p>
+        <h2 className='text-lg font-semibold'>Update dish</h2>
 
         <Input
           label='Name'
@@ -175,21 +149,48 @@ export default function AdminDishCreatePage() {
           {...form.register('category_id')}
         />
 
-        <Input
-          label='Image'
-          type='file'
-          accept='image/*'
-          className='file-input'
-          placeholder='Upload the dish image'
-          errorMessage={form.formState.errors.file?.message?.toString()}
-          isInvalid={!!form.formState.errors.file}
-          {...form.register('file')}
+        {previewUrl && (
+          <img
+            src={previewUrl}
+            alt='Dish preview'
+            className='w-64 h-64 object-cover rounded-lg mb-4'
+          />
+        )}
+
+        <Controller
+          name='file'
+          control={form.control}
+          render={({ field }) => (
+            <Input
+              label='Image'
+              type='file'
+              accept='image/*'
+              className='file-input'
+              placeholder='Upload the dish image'
+              errorMessage={form.formState.errors.file?.message?.toString()}
+              //isInvalid={!!form.formState.errors.file}
+              onChange={(e) => {
+                const files = e.target.files
+
+                if (files && files.length > 0) {
+                  const file = files[0]
+                  console.info('Files:', file)
+                  const imageUrl = URL.createObjectURL(file)
+                  setPreviewUrl(imageUrl)
+                  setFile(file)
+                  //field.onChange(files) // <-- pass the FileList, not just a single file!
+                }
+              }}
+            />
+          )}
         />
 
         <Button type='submit' color='success' className='mt-4'>
-          Create Dish
+          Update dish
         </Button>
       </Card>
     </form>
   )
 }
+
+export default FormDish

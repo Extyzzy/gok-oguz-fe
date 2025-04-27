@@ -23,6 +23,10 @@ export const getDishes = async () => {
   return data
 }
 
+export const getDish = (id: string) => {
+  return api.get(`dishes/${id}`).then(({ data }) => data)
+}
+
 export const createDish = async (data: Dish) => {
   const { data: response } = await api.post(dishesEndpoint(''), data, {
     headers: {
@@ -30,4 +34,11 @@ export const createDish = async (data: Dish) => {
     },
   })
   return response
+}
+
+export interface DeleteDishProps {
+  id: string
+}
+export const deleteDish = (payload: DeleteDishProps) => {
+  return api.delete(`/dishes/${payload.id}`).then(({ data }) => data)
 }

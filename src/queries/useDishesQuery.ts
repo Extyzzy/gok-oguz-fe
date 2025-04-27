@@ -4,7 +4,6 @@ import { AxiosError } from 'axios'
 
 export type Dish = {
   id: string
-
   name: string
   name_en: string
   name_ro: string
