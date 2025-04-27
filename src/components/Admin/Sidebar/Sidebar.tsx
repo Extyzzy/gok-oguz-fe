@@ -10,6 +10,7 @@ import { navigation } from '@/config/navigation.config'
 import { NavCollapsedIcon } from '@/components/icons/NavCollapsedIcon'
 import { NavExpandedIcon } from '@/components/icons/NavExpandedIcon'
 import { LogoutIcon } from '@/components/icons/LogoutIcon'
+import { useTheme } from 'next-themes'
 
 const sidebar = tv({
   base: twMerge(
@@ -52,7 +53,8 @@ const processNavigation = (
 }
 
 export const Sidebar = () => {
-  const { user, logout } = useAuth()
+  const { logout } = useAuth()
+  const { setTheme } = useTheme()
 
   const isMobile = window.innerWidth < 768
 
@@ -95,16 +97,37 @@ export const Sidebar = () => {
           <Divider className='mt-6' />
         </div>
 
-        <Button
-          color='danger'
-          onClick={logout}
-          fullWidth
-          className='justify-start mb-12 min-w-0 px-2.5'
-        >
-          <LogoutIcon className='h-6 w-6' />
-          {!isCollapsed && <span>Logout</span>}
-        </Button>
+        <div>
+          <div className='space-x-2 mb-6'>
+            <Button
+              onClick={() => setTheme('light')}
+              className={'capitalize'}
+              color={'primary'}
+              size={'sm'}
+            >
+              Light
+            </Button>
+            <Button
+              onClick={() => setTheme('dark')}
+              className={'capitalize'}
+              color={'default'}
+              size={'sm'}
+            >
+              Dark
+            </Button>
+          </div>
+          <Button
+            color='danger'
+            onClick={logout}
+            fullWidth
+            className='justify-start mb-12 min-w-0 px-2.5'
+          >
+            <LogoutIcon className='h-6 w-6' />
+            {!isCollapsed && <span>Logout</span>}
+          </Button>
+        </div>
       </div>
+
       <Button
         className={toggle({ isCollapsed })}
         isIconOnly

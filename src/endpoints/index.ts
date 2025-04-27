@@ -42,3 +42,10 @@ export interface DeleteDishProps {
 export const deleteDish = (payload: DeleteDishProps) => {
   return api.delete(`/dishes/${payload.id}`).then(({ data }) => data)
 }
+
+export const getCategories = async () => {
+  return api.get(`dish-category`).then(({ data }) => data)
+}
+export const getCategory = (id: string) => {
+  return api.get(`dish-category/${id}`).then(({ data }) => data)
+}

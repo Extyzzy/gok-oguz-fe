@@ -5,6 +5,9 @@ import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
+import { CategoryAutocomplete } from '@/components/Admin/Category/CategoryAutocomplete'
+import { MoneyInput } from '@/components/Admin/Inputs/MoneyInput'
+import { WeightInput } from '@/components/Admin/Inputs/WeightInput'
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024 // 2MB
 const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/png']
@@ -19,7 +22,7 @@ const DishSchema = z.object({
   description_ru: z.string().min(1, 'Description is required'),
   weight: z.string().min(1, 'Weight is required'),
   price: z.string().regex(/^\d+(\.\d{1,2})?$/, 'Cost must be a valid number'),
-  category_id: z.string().min(1, 'Category is required'),
+  category_id: z.string().min(1, 'Category is required').optional(),
   image: z.string().optional(),
   file: z
     .instanceof(File)
@@ -35,13 +38,17 @@ const DishSchema = z.object({
 export type FormDataDish = z.infer<typeof DishSchema>
 
 interface FormDishProps {
-  initialValues: FormDataDish
+  initialValues?: FormDataDish
   onSubmit: (data: FormDataDish) => void
+
+  update?: boolean
 }
 
-const FormDish = ({ initialValues, onSubmit }: FormDishProps) => {
+const FormDish = ({ initialValues, onSubmit, update }: FormDishProps) => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(
-    (process.env.NEXT_PUBLIC_BACK_END_URL || '') + initialValues?.image,
+    initialValues?.image
+      ? (process.env.NEXT_PUBLIC_BACK_END_URL || '') + initialValues?.image
+      : null,
   )
 
   const [file, setFile] = useState<File | null>()
@@ -59,10 +66,9 @@ const FormDish = ({ initialValues, onSubmit }: FormDishProps) => {
   }
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmitHandler)}>
+    <form onSubmit={form.handleSubmit(onSubmitHandler)} className='w-[1000px]'>
       <Card className='p-4 space-y-4'>
         <h2 className='text-lg font-semibold'>Update dish</h2>
-
         <Input
           label='Name'
           placeholder='Enter the dish name as slug'
@@ -87,7 +93,6 @@ const FormDish = ({ initialValues, onSubmit }: FormDishProps) => {
             {...form.register('description_en')}
           />
         </div>
-
         <div className='flex gap-x-4'>
           <Input
             label='Name'
@@ -105,7 +110,6 @@ const FormDish = ({ initialValues, onSubmit }: FormDishProps) => {
             {...form.register('description_ro')}
           />
         </div>
-
         <div className='flex gap-x-4'>
           <Input
             label='Name'
@@ -122,17 +126,15 @@ const FormDish = ({ initialValues, onSubmit }: FormDishProps) => {
             {...form.register('description_ru')}
           />
         </div>
-
-        <Input
+        <WeightInput
           label='Weight'
-          type='number'
           placeholder='Enter the dish weight'
           errorMessage={form.formState.errors.weight?.message}
           isInvalid={!!form.formState.errors.weight}
           {...form.register('weight')}
         />
 
-        <Input
+        <MoneyInput
           label='Cost'
           type='number'
           placeholder='Enter the dish cost'
@@ -141,12 +143,19 @@ const FormDish = ({ initialValues, onSubmit }: FormDishProps) => {
           {...form.register('price')}
         />
 
-        <Input
-          label='Category'
-          placeholder='Enter the dish category'
-          errorMessage={form.formState.errors.category_id?.message}
-          isInvalid={!!form.formState.errors.category_id}
-          {...form.register('category_id')}
+        <Controller
+          control={form.control}
+          name='category_id'
+          render={({ field, fieldState }) => (
+            <CategoryAutocomplete
+              label='Category'
+              placeholder='Enter the dish category'
+              errorMessage={fieldState.error?.message}
+              isInvalid={!!fieldState.error}
+              selectKey={field.value ?? null}
+              onSelectionChange={(key) => field.onChange(key)}
+            />
+          )}
         />
 
         {previewUrl && (
@@ -156,7 +165,6 @@ const FormDish = ({ initialValues, onSubmit }: FormDishProps) => {
             className='w-64 h-64 object-cover rounded-lg mb-4'
           />
         )}
-
         <Controller
           name='file'
           control={form.control}
@@ -168,7 +176,6 @@ const FormDish = ({ initialValues, onSubmit }: FormDishProps) => {
               className='file-input'
               placeholder='Upload the dish image'
               errorMessage={form.formState.errors.file?.message?.toString()}
-              //isInvalid={!!form.formState.errors.file}
               onChange={(e) => {
                 const files = e.target.files
 
@@ -178,15 +185,13 @@ const FormDish = ({ initialValues, onSubmit }: FormDishProps) => {
                   const imageUrl = URL.createObjectURL(file)
                   setPreviewUrl(imageUrl)
                   setFile(file)
-                  //field.onChange(files) // <-- pass the FileList, not just a single file!
                 }
               }}
             />
           )}
         />
-
-        <Button type='submit' color='success' className='mt-4'>
-          Update dish
+        <Button type='submit' color='success' className='mt-4 text-white !w-1/4  flex self-end'>
+          {update ? 'Update' : 'Create'} dish
         </Button>
       </Card>
     </form>

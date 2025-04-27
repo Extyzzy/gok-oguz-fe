@@ -5,6 +5,7 @@ import './globals.css'
 import QueryProvider from '@/queryClient/QueryClientProvider'
 import { NextUIProvider } from '@nextui-org/react'
 import { AuthProvider } from '@/context/AuthContext'
+import { ThemeProvider as NextThemesProvider } from 'next-themes'
 
 const onest = Onest({ subsets: ['latin'] })
 
@@ -26,9 +27,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <html lang='en' suppressHydrationWarning>
       <body className={onest.className}>
         <NextUIProvider>
-          <QueryProvider>
-            <AuthProvider>{children}</AuthProvider>
-          </QueryProvider>
+          <NextThemesProvider attribute='class' defaultTheme='light'>
+            <QueryProvider>
+              <AuthProvider>{children}</AuthProvider>
+            </QueryProvider>
+          </NextThemesProvider>
         </NextUIProvider>
       </body>
     </html>

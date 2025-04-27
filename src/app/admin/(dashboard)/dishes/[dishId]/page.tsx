@@ -1,15 +1,13 @@
 'use client'
 
 import api from '@/services/api'
-import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
 import { useDishQuery } from '@/queries/useDishQuery'
 
 import { toast } from 'react-toastify'
-import FormDish, { FormDataDish } from '@/components/FormDish/FormDish'
+import FormDish, { FormDataDish } from '@/components/Admin/FormDish/FormDish'
 
 export default function AdminDishCreatePage() {
-  const router = useRouter()
   const params = useParams()
 
   const {
@@ -33,7 +31,6 @@ export default function AdminDishCreatePage() {
   }
 
   const onSubmitHandler = async (data: FormDataDish) => {
-    console.info('ilegea')
     try {
       console.log('Form submitted:', data)
 
@@ -68,6 +65,7 @@ export default function AdminDishCreatePage() {
 
   return (
     <FormDish
+      update
       initialValues={
         {
           ...dishData,
