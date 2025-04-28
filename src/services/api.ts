@@ -1,3 +1,4 @@
+import i18n from '@/i18n/i18n'
 import axios from 'axios'
 import { parseCookies } from 'nookies'
 
@@ -11,8 +12,13 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
+    Lang: i18n.language,
   },
   withCredentials: true,
+})
+
+i18n.on('languageChanged', (lng) => {
+  api.defaults.headers['lang'] = lng
 })
 
 // Request interceptor to add auth token to headers

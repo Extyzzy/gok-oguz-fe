@@ -36,11 +36,16 @@ export const createDish = async (data: Dish) => {
   return response
 }
 
-export interface DeleteDishProps {
+export interface DeleteProps {
   id: string
 }
-export const deleteDish = (payload: DeleteDishProps) => {
+
+export const deleteDish = (payload: DeleteProps) => {
   return api.delete(`/dishes/${payload.id}`).then(({ data }) => data)
+}
+
+export const deleteCategory = (payload: DeleteProps) => {
+  return api.delete(`/dish-category/${payload.id}`).then(({ data }) => data)
 }
 
 export const getCategories = async () => {
@@ -48,4 +53,8 @@ export const getCategories = async () => {
 }
 export const getCategory = (id: string) => {
   return api.get(`dish-category/${id}`).then(({ data }) => data)
+}
+
+export const getPublicDishes = () => {
+  return api.get(`dishes/public`).then(({ data }) => data)
 }

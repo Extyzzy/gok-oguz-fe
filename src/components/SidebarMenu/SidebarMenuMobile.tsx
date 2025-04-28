@@ -4,6 +4,7 @@ import { cn } from '@/library/utils'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import clsx from 'clsx'
+import { useCategoriesQuery } from '@/queries/useCategoriesQuery'
 
 const SidebarMenuMobile = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -11,9 +12,11 @@ const SidebarMenuMobile = () => {
   const router = useRouter()
   const pathname = usePathname()
 
-  const currentSlug = pathname.split('/').filter(Boolean).pop()
+  const { data: categories, isLoading } = useCategoriesQuery()
 
-  const selectedItem = menuList.find((menuItem) => menuItem.slug === currentSlug)
+  const id = pathname.split('/').filter(Boolean).pop()
+
+  const selectedItem = categories?.find((menuItem) => menuItem.id.toString() === id)
 
   return (
     <div>
@@ -53,26 +56,31 @@ const SidebarMenuMobile = () => {
             },
           )}
         >
-          {menuList.map((item, index) => {
+          {categories?.map((item, index) => {
             return (
               <div
                 key={index}
-                onClick={() => router.push(`/menu/${item.slug}`)}
+                onClick={() => router.push(`/menu/${item.id}`)}
                 className={cn(
                   'flex items-center gap-3 hover:font-bold hover:!text-[#882727] cursor-pointer mb-3',
                   {
-                    'font-bold !text-[#882727]': item.slug === currentSlug,
+                    'font-bold !text-[#882727]': item.id.toString() === id,
                   },
                 )}
               >
                 <Image
-                  src={item.iconSrc}
+                  src={item?.iconSrc}
                   width={22}
                   height={22}
                   alt={item.name}
                   className='text-white'
                 />
-                <span>{item.name}</span>
+                <span>
+                  {
+                    //@ts-ignore
+                    item[`name_${i18n.language}`]
+                  }
+                </span>
               </div>
             )
           })}

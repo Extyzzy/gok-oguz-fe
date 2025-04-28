@@ -26,13 +26,13 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={onest.className}>
-        <NextUIProvider>
-          <NextThemesProvider attribute='class' defaultTheme='light'>
+        <NextThemesProvider attribute='class' defaultTheme='light'>
+          <NextUIProvider>
             <QueryProvider>
               <AuthProvider>{children}</AuthProvider>
             </QueryProvider>
-          </NextThemesProvider>
-        </NextUIProvider>
+          </NextUIProvider>{' '}
+        </NextThemesProvider>
       </body>
     </html>
   )

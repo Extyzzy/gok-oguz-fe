@@ -68,7 +68,7 @@ const FormDish = ({ initialValues, onSubmit, update }: FormDishProps) => {
   return (
     <form onSubmit={form.handleSubmit(onSubmitHandler)} className='w-[1000px]'>
       <Card className='p-4 space-y-4'>
-        <h2 className='text-lg font-semibold'>Update dish</h2>
+        <h2 className='text-lg font-semibold'>{update ? 'Update' : 'Create'} dish</h2>
         <Input
           label='Name'
           placeholder='Enter the dish name as slug'

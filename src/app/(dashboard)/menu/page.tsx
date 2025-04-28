@@ -6,11 +6,15 @@ import SidebarMenu from '@/components/SidebarMenu/SidebarMenu'
 import SidebarMenuMobile from '@/components/SidebarMenu/SidebarMenuMobile'
 import Title from '@/components/Title/Title'
 import { useTranslation } from 'react-i18next'
+import { usePublicDishesQuery } from '@/queries/usePublicDishesQuery'
 
 const Menu = () => {
   const { t } = useTranslation()
   const menuCardsList = useGetMenuCardsItems()
 
+  const { data: dishes } = usePublicDishesQuery()
+
+  console.info(dishes)
   return (
     <div className='pt-2 mb-4 mx-2 sm:mx-0'>
       <Title classNames='text-center'>{t('menu.title')}</Title>

@@ -1,4 +1,5 @@
 import { getCategories } from '@/endpoints'
+import i18n from '@/i18n/i18n'
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
@@ -17,7 +18,7 @@ type UseCategoriesQuery = (queryOptions?: {
 
 export const useCategoriesQuery: UseCategoriesQuery = (queryOptions) => {
   return useQuery({
-    queryKey: ['categories'],
+    queryKey: ['categories', i18n.language],
     queryFn: getCategories,
     ...queryOptions,
   })
