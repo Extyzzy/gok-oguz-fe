@@ -1,7 +1,6 @@
 'use client'
 
 import CardMenu from '@/components/CardMenu/CardMenu'
-import useGetMenuCardsItems from '@/hooks/useGetMenuCardsItems'
 import SidebarMenu from '@/components/SidebarMenu/SidebarMenu'
 import SidebarMenuMobile from '@/components/SidebarMenu/SidebarMenuMobile'
 import Title from '@/components/Title/Title'
@@ -10,7 +9,6 @@ import { usePublicDishesQuery } from '@/queries/usePublicDishesQuery'
 
 const Menu = () => {
   const { t } = useTranslation()
-  const menuCardsList = useGetMenuCardsItems()
 
   const { data: dishes } = usePublicDishesQuery()
 
@@ -21,9 +19,7 @@ const Menu = () => {
       <div className='flex gap-8 mt-2 '>
         <SidebarMenu />
         <div className='grid lg:grid-cols-2 xl:grid-cols-3 flex-wrap justify-center md:justify-start gap-4 w-[90%] lg:w-[69%]'>
-          {menuCardsList.map((item, index) => (
-            <CardMenu key={index} imagePath={item.image} {...item} />
-          ))}
+          {dishes?.map((item, index) => <CardMenu key={index} imagePath={item.image} {...item} />)}
         </div>
         <SidebarMenuMobile />
       </div>

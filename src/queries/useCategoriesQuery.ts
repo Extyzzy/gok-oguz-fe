@@ -5,7 +5,7 @@ import { AxiosError } from 'axios'
 
 export type DishCategory = {
   id: number
-  name: string
+  slug: string
   name_en: string
   name_ro: string
   name_ru: string

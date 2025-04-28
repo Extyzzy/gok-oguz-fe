@@ -58,3 +58,7 @@ export const getCategory = (id: string) => {
 export const getPublicDishes = () => {
   return api.get(`dishes/public`).then(({ data }) => data)
 }
+
+export const getPublicDishesByCategory = (slug: string) => {
+  return api.get(`dish-category/public/${slug}/dishes`).then(({ data }) => data)
+}

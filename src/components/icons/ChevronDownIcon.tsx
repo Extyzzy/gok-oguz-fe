@@ -1,5 +1,6 @@
-export const ChevronDownIcon = () => (
+export const ChevronDownIcon = ({ className }: { className: string }) => (
   <svg
+    className={className}
     aria-hidden='true'
     fill='none'
     focusable='false'

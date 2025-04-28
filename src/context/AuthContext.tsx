@@ -6,7 +6,8 @@ import api from '@/services/api' // Import your configured instance
 
 type User = {
   id: string
-  name: string
+  firstName: string
+  lastName: string
   email: string
 }
 

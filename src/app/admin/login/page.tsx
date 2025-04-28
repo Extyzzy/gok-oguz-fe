@@ -4,6 +4,8 @@ import { Button, Input } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useEffect, useState } from 'react'
 import { useAuth } from '@/context/AuthContext'
+import { ChevronDownIcon } from '@/components/icons/ChevronDownIcon'
+import Link from 'next/link'
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState('')
@@ -52,6 +54,14 @@ export default function AdminLoginPage() {
           />
           <Button type='submit' color='primary' fullWidth>
             Login
+          </Button>
+          <Button
+            variant='light'
+            startContent={<ChevronDownIcon className='rotate-90' />}
+            as={Link}
+            href='/'
+          >
+            Back to website
           </Button>
         </form>
       </div>

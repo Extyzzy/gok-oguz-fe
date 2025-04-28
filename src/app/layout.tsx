@@ -31,7 +31,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             <QueryProvider>
               <AuthProvider>{children}</AuthProvider>
             </QueryProvider>
-          </NextUIProvider>{' '}
+          </NextUIProvider>
         </NextThemesProvider>
       </body>
     </html>

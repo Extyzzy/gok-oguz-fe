@@ -5,12 +5,10 @@ import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
-
-const MAX_FILE_SIZE = 2 * 1024 * 1024 // 2MB
-const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/png', 'image/svg+xml']
+import { ALLOWED_FILE_TYPES, MAX_FILE_SIZE } from '@/config/file'
 
 const CategorySchema = z.object({
-  name: z.string().min(1, 'Name is required'),
+  slug: z.string().min(1, 'Slug is required'),
   name_en: z.string().min(1, 'Name is required'),
   name_ro: z.string().min(1, 'Name is required'),
   name_ru: z.string().min(1, 'Name is required'),
@@ -48,6 +46,7 @@ const FormCategory = ({ initialValues, onSubmit, update }: FormDishProps) => {
     defaultValues: { ...initialValues },
   })
 
+  console.info(form.formState.errors)
   const onSubmitHandler = (data: FormDataDishCategory) => {
     onSubmit({
       ...data,
@@ -56,19 +55,19 @@ const FormCategory = ({ initialValues, onSubmit, update }: FormDishProps) => {
   }
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmitHandler)} className='w-[1000px]'>
+    <form onSubmit={form.handleSubmit(onSubmitHandler)} className='max-w-[1000px]'>
       <Card className='p-4 space-y-4'>
         <h2 className='text-lg font-semibold'> {update ? 'Update' : 'Create'} category</h2>
         <Input
-          label='Name'
+          label='Slug'
           placeholder='Enter the category name as slug'
-          errorMessage={form.formState.errors.name?.message}
-          isInvalid={!!form.formState.errors.name}
-          {...form.register('name')}
+          errorMessage={form.formState.errors.slug?.message}
+          isInvalid={!!form.formState.errors.slug}
+          {...form.register('slug')}
         />
         <div className='flex gap-x-4'>
           <Input
-            label='Name'
+            label='Name english'
             placeholder='Enter the category name for english'
             errorMessage={form.formState.errors.name_en?.message}
             isInvalid={!!form.formState.errors.name_en}
@@ -77,7 +76,7 @@ const FormCategory = ({ initialValues, onSubmit, update }: FormDishProps) => {
         </div>
         <div className='flex gap-x-4'>
           <Input
-            label='Name'
+            label='Name romanian'
             placeholder='Enter the category name for romanian'
             errorMessage={form.formState.errors.name_ro?.message}
             isInvalid={!!form.formState.errors.name_ro}
@@ -86,7 +85,7 @@ const FormCategory = ({ initialValues, onSubmit, update }: FormDishProps) => {
         </div>
         <div className='flex gap-x-4'>
           <Input
-            label='Name'
+            label='Name russian'
             placeholder='Enter the category name for russian'
             errorMessage={form.formState.errors.name_ru?.message}
             isInvalid={!!form.formState.errors.name_ru}
@@ -113,6 +112,7 @@ const FormCategory = ({ initialValues, onSubmit, update }: FormDishProps) => {
               placeholder='Upload the category icon SVG'
               errorMessage={form.formState.errors.file?.message?.toString()}
               onChange={(e) => {
+                console.info('blabla')
                 const files = e.target.files
 
                 if (files && files.length > 0) {

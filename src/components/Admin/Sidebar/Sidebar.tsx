@@ -98,7 +98,7 @@ export const Sidebar = () => {
         </div>
 
         <div>
-          <div className='space-x-2 mb-6'>
+          <div className='flex flex-wrap gap-4 mb-6'>
             <Button
               onClick={() => setTheme('light')}
               className={'capitalize'}
