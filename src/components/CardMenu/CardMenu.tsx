@@ -12,10 +12,12 @@ interface CardMenuProps {
   description_ro: string
   description_en: string
   price: number
+  onPressImage: () => void
 }
 
-const CardMenu = ({ imagePath, weight, price, slug, ...props }: CardMenuProps) => {
+const CardMenu = ({ imagePath, weight, price, slug, onPressImage, ...props }: CardMenuProps) => {
   const { i18n } = useTranslation()
+
   return (
     <div className='bg-beige hover:shadow rounded-2xl sm:h-[340px] h-auto border border-[#882727] overflow-hidden'>
       {(imagePath && (
@@ -27,6 +29,7 @@ const CardMenu = ({ imagePath, weight, price, slug, ...props }: CardMenuProps) =
           height={50}
           placeholder='blur'
           blurDataURL='/assets/svg/peppers.svg'
+          onClick={() => onPressImage()}
         />
       )) || (
         <Image
