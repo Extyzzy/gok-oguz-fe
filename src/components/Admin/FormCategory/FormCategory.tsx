@@ -1,11 +1,12 @@
 'use client'
 
 import { Button, Card, Input } from '@nextui-org/react'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
+import { useCallback, useMemo } from 'react'
 import { ALLOWED_FILE_TYPES, MAX_FILE_SIZE } from '@/config/file'
+import { CropImage } from '@/components/Admin/CropImage/CropImage'
 
 const CategorySchema = z.object({
   slug: z.string().min(1, 'Slug is required'),
@@ -33,29 +34,24 @@ interface FormDishProps {
 }
 
 const FormCategory = ({ initialValues, onSubmit, update }: FormDishProps) => {
-  const [previewUrl, setPreviewUrl] = useState<string | null>(
-    initialValues?.image
-      ? (process.env.NEXT_PUBLIC_BACK_END_URL || '') + initialValues?.image
-      : null,
-  )
+  const initialImage = useMemo<string | null>(
+    () =>
+      initialValues?.image
+        ? (process.env.NEXT_PUBLIC_BACK_END_URL || '') + initialValues?.image
+        : null,
 
-  const [file, setFile] = useState<File | null>()
+    [initialValues],
+  )
 
   const form = useForm<z.infer<typeof CategorySchema>>({
     resolver: zodResolver(CategorySchema),
     defaultValues: { ...initialValues },
   })
 
-  console.info(form.formState.errors)
-  const onSubmitHandler = (data: FormDataDishCategory) => {
-    onSubmit({
-      ...data,
-      file: file || undefined,
-    })
-  }
+  const onSubmitHandler = useCallback(onSubmit, [onSubmit])
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmitHandler)} className='max-w-[1000px]'>
+    <form onSubmit={form.handleSubmit(onSubmitHandler)}>
       <Card className='p-4 space-y-4'>
         <h2 className='text-lg font-semibold'> {update ? 'Update' : 'Create'} category</h2>
         <Input
@@ -93,40 +89,15 @@ const FormCategory = ({ initialValues, onSubmit, update }: FormDishProps) => {
           />
         </div>
 
-        {previewUrl && (
-          <img
-            src={previewUrl}
-            alt='Category preview'
-            className='w-64 h-64 object-cover rounded-lg mb-4'
-          />
-        )}
-        <Controller
-          name='file'
-          control={form.control}
-          render={({ field }) => (
-            <Input
-              label='Image'
-              type='file'
-              accept='image/*'
-              className='file-input'
-              placeholder='Upload the category icon SVG'
-              errorMessage={form.formState.errors.file?.message?.toString()}
-              onChange={(e) => {
-                console.info('blabla')
-                const files = e.target.files
-
-                if (files && files.length > 0) {
-                  const file = files[0]
-                  console.info('Files:', file)
-                  const imageUrl = URL.createObjectURL(file)
-                  setPreviewUrl(imageUrl)
-                  setFile(file)
-                }
-              }}
-            />
-          )}
+        <CropImage
+          errorMessage={form.formState.errors.file?.message?.toString()}
+          onChange={(file) => {
+            form.setValue('file', file)
+          }}
+          initialImage={initialImage}
         />
-        <Button type='submit' color='success' className='mt-4 text-white !w-1/4  flex self-end'>
+
+        <Button type='submit' color='success' className='mt-4 text-white  flex self-end'>
           {update ? 'Update' : 'Create'} category
         </Button>
       </Card>

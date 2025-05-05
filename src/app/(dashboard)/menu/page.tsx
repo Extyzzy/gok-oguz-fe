@@ -36,12 +36,12 @@ const Menu = () => {
             />
           ))}
         </div>
-        <Modal isOpen={isOpen} onChange={onOpenChange} className='w-[80%] h-[80%]'>
+        <Modal isOpen={isOpen} onChange={onOpenChange}>
           <Image
             fill
             src={process.env.NEXT_PUBLIC_BACK_END_URL + image}
             alt={'preview'}
-            objectFit='contain'
+            className='object-contain'
           />
         </Modal>
         <SidebarMenuMobile />
