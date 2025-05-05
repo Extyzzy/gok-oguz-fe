@@ -12,14 +12,14 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
-    // Lang: i18n.language,
+    lang: i18n.language,
   },
   withCredentials: true,
 })
 
-// i18n.on('languageChanged', (lng) => {
-//   api.defaults.headers['lang'] = lng
-// })
+i18n.on('languageChanged', (lng) => {
+  api.defaults.headers['lang'] = lng
+})
 
 // Request interceptor to add auth token to headers
 api.interceptors.request.use((config) => {
