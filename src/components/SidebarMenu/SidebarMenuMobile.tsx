@@ -69,7 +69,7 @@ const SidebarMenuMobile = () => {
                 )}
               >
                 <Image
-                  src={item?.iconSrc}
+                  src={item?.image}
                   width={22}
                   height={22}
                   alt={item.name}
