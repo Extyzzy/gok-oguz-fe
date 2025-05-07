@@ -8,7 +8,7 @@ export const CategoryAutocomplete = forwardRef<HTMLInputElement, Partial<Autocom
 
     const mappedCategories = useMemo(() => {
       if (!categories) return []
-      return categories.map(({ id, name }) => ({ id: String(id), name }))
+      return categories.map(({ id, name_ru }) => ({ id: String(id), name_ru }))
     }, [categories])
 
     if (isLoading) {

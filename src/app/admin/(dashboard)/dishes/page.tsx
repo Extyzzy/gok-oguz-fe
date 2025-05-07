@@ -59,8 +59,8 @@ export default function AdminDishesPage() {
           {dishes.map((dish) => (
             <TableRow key={dish.id}>
               <TableCell>{dish.id}</TableCell>
-              <TableCell>{dish.name}</TableCell>
-              <TableCell>{dish.category.name}</TableCell>
+              <TableCell>{dish.name_ru}</TableCell>
+              <TableCell>{dish.category.name_ru}</TableCell>
               <TableCell>
                 <div className='flex gap-x-4'>
                   <Button

@@ -1,22 +1,22 @@
 import Image from 'next/image'
-import useGetMenuList from '@/hooks/useGetMenuList'
 import { cn } from '@/library/utils'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import clsx from 'clsx'
 import { useCategoriesQuery } from '@/queries/useCategoriesQuery'
+import { useTranslation } from 'react-i18next'
 
 const SidebarMenuMobile = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const menuList = useGetMenuList()
   const router = useRouter()
   const pathname = usePathname()
+  const { i18n } = useTranslation()
 
   const { data: categories, isLoading } = useCategoriesQuery()
 
-  const id = pathname.split('/').filter(Boolean).pop()
+  const currentSlug = pathname.split('/').filter(Boolean).pop()
 
-  const selectedItem = categories?.find((menuItem) => menuItem.id.toString() === id)
+  const selectedItem = categories?.find((category) => category.slug === currentSlug)
 
   return (
     <div>
@@ -30,7 +30,12 @@ const SidebarMenuMobile = () => {
         <div className='flex justify-between items-center px-2'>
           <div className='flex gap-3'>
             <Image src='/assets/svg/menu.svg' width={22} height={22} alt='menu' />
-            <span>Meniu {selectedItem && `/ ${selectedItem.name}`}</span>
+            <span>
+              Meniu
+              {selectedItem &&
+                //@ts-ignore
+                `/ ${selectedItem[`name_${i18n.language}`]}`}
+            </span>
           </div>
 
           <Image
@@ -60,11 +65,11 @@ const SidebarMenuMobile = () => {
             return (
               <div
                 key={index}
-                onClick={() => router.push(`/menu/${item.id}`)}
+                onClick={() => router.push(`/menu/${item.slug}`)}
                 className={cn(
                   'flex items-center gap-3 hover:font-bold hover:!text-[#882727] cursor-pointer mb-3',
                   {
-                    'font-bold !text-[#882727]': item.id.toString() === id,
+                    'font-bold !text-[#882727]': item.slug === currentSlug,
                   },
                 )}
               >
@@ -72,7 +77,7 @@ const SidebarMenuMobile = () => {
                   src={item?.image}
                   width={22}
                   height={22}
-                  alt={item.name}
+                  alt={item.slug}
                   className='text-white'
                 />
                 <span>

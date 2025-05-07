@@ -19,7 +19,7 @@ export const MoneyInput = forwardRef<HTMLInputElement, InputProps>(
         onValueChange={onValueChange}
         startContent={
           <div className='pointer-events-none flex items-center'>
-            <span className='text-small text-default-400'>$</span>
+            <span className='text-small text-default-400'>L</span>
           </div>
         }
         {...props}

@@ -56,7 +56,7 @@ export default function AdminCategoriesPage() {
           {categories.map((category) => (
             <TableRow key={category.id}>
               <TableCell>{category.id}</TableCell>
-              <TableCell>{category.name}</TableCell>
+              <TableCell>{category.name_ru}</TableCell>
               <TableCell>
                 <div className='flex gap-x-4'>
                   <Button

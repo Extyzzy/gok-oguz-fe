@@ -1,16 +1,14 @@
 import Image from 'next/image'
-import useGetMenuList from '@/hooks/useGetMenuList'
 import { cn } from '@/library/utils'
 import { usePathname, useRouter } from 'next/navigation'
 import { useCategoriesQuery } from '@/queries/useCategoriesQuery'
 import { useTranslation } from 'react-i18next'
 
 const SidebarMenu = () => {
-  const menuList = useGetMenuList()
   const router = useRouter()
   const pathname = usePathname()
   const { i18n } = useTranslation()
-  const id = pathname.split('/').filter(Boolean).pop()
+  const currentSlug = pathname.split('/').filter(Boolean).pop()
 
   const { data: categories, isLoading } = useCategoriesQuery()
 
@@ -20,15 +18,22 @@ const SidebarMenu = () => {
         return (
           <div
             key={index}
-            onClick={() => router.push(`/menu/${item.id}`)}
+            onClick={() => router.push(`/menu/${item.slug}`)}
             className={cn(
               'flex items-center gap-3 hover:font-bold hover:!text-[#882727] cursor-pointer mb-1',
               {
-                'font-bold !text-[#882727]': item.id.toString() === id,
+                'font-bold !text-[#882727]': item.slug === currentSlug,
               },
             )}
           >
-            <Image src={item?.image} width={22} height={22} alt={item.name} />
+{item?.image && (
+              <Image
+                src={process.env.NEXT_PUBLIC_BACK_END_URL + item.image}
+                width={22}
+                height={22}
+                alt={item.slug}
+              />
+            )}
 
             <span>
               {
