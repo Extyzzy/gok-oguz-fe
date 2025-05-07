@@ -28,7 +28,7 @@ const SidebarMenu = () => {
               },
             )}
           >
-            <Image src={item?.iconSrc} width={22} height={22} alt={item.name} />
+            <Image src={item?.image} width={22} height={22} alt={item.name} />
 
             <span>
               {
