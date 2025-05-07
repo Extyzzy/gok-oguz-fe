@@ -29,8 +29,6 @@ export default function AdminCategoryCreatePage() {
 
   const onSubmitHandler = async (data: FormDataDishCategory) => {
     try {
-      console.log('Form submitted:', data)
-
       const response = await api.put(
         `/dish-category/${params.categoryId}`,
         {

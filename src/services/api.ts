@@ -7,19 +7,19 @@ if (!process.env.NEXT_PUBLIC_BACK_END_URL) {
 }
 // Create axios instance with base URL from environment variables
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BACK_END_URL,
+  baseURL: 'https://api.gok-oguz.md',
   timeout: 10000, // 10 seconds timeout
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
-    Lang: i18n.language,
+    // Lang: i18n.language,
   },
   withCredentials: true,
 })
 
-i18n.on('languageChanged', (lng) => {
-  api.defaults.headers['lang'] = lng
-})
+// i18n.on('languageChanged', (lng) => {
+//   api.defaults.headers['lang'] = lng
+// })
 
 // Request interceptor to add auth token to headers
 api.interceptors.request.use((config) => {
