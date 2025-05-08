@@ -8,7 +8,6 @@ const SidebarMenu = () => {
   const router = useRouter()
   const pathname = usePathname()
   const { i18n } = useTranslation()
-  const id = pathname.split('/').filter(Boolean).pop()
   const currentSlug = pathname.split('/').filter(Boolean).pop()
 
   const { data: categories, isLoading } = useCategoriesQuery()
