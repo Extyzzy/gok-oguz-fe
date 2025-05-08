@@ -44,7 +44,7 @@ const CardMenu = ({ imagePath, weight, price, slug, onPressImage, ...props }: Ca
       <h3 className='pl-4 font-medium !text-md md:!text-lg mt-4'>
         {
           //@ts-ignore
-          props[`name_${i18n.language}`]
+          props.title
         }
       </h3>
       <div className='flex items-center justify-between font-light mt-2 px-4'>
@@ -59,7 +59,7 @@ const CardMenu = ({ imagePath, weight, price, slug, onPressImage, ...props }: Ca
           <p className='text-md md:text-base w-[90%] line-clamp-2 mb-4 sm:mb-0'>
             {
               //@ts-ignore
-              props[`description_${i18n.language}`]
+              props.description
             }
           </p>
         </div>
