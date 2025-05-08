@@ -34,7 +34,7 @@ export const Modal = ({ children, className, ...props }: ModalProps) => {
       <div className='absolute inset-0 bg-black/30 backdrop-blur-sm' onClick={onClose} />
 
       {/* Modal Content */}
-      <div className={cn('relative z-40 w-full max-w-2xl rounded-md p-10', className)}>
+      <div className={cn('relative z-40 w-full max-w-2xl h-[378px] rounded-md p-10', className)}>
         <button onClick={onClose} className='absolute top-4 right-4 z-30' type='button'>
           <CloseIcon className='w-10 h-10 cursor-pointer' />
         </button>

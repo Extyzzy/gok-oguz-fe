@@ -6,9 +6,11 @@ import { useDishQuery } from '@/queries/useDishQuery'
 
 import { toast } from 'react-toastify'
 import FormDish, { FormDataDish } from '@/components/Admin/FormDish/FormDish'
+import { useRouter } from 'next/navigation'
 
 export default function AdminDishCreatePage() {
   const params = useParams()
+  const router = useRouter()
 
   const {
     isLoading: isLoadingDish,
@@ -50,11 +52,10 @@ export default function AdminDishCreatePage() {
         },
       )
 
-      toast.success('Sucessfully updated the dish')
+      toast.success('Successfully updated the dish')
 
-      if (response.status === 201) {
-        console.log('Dish updated successfully:', response.data)
-        // router.push('/admin/dishes')
+      if (response.status === 200) {
+        router.push('/admin/dishes')
       }
 
       console.log('Response:', response)

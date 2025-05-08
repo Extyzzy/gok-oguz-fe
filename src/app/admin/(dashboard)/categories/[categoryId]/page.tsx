@@ -6,15 +6,13 @@ import { useParams } from 'next/navigation'
 import { toast } from 'react-toastify'
 import FormCategory, { FormDataDishCategory } from '@/components/Admin/FormCategory/FormCategory'
 import { useCategoryQuery } from '@/queries/useCategoryQuery'
+import { useRouter } from 'next/navigation'
 
 export default function AdminCategoryCreatePage() {
   const params = useParams()
+  const router = useRouter()
 
-  const {
-    isLoading: isLoadingCategory,
-    data: categoryData,
-    isSuccess: isSuccessLoaded,
-  } = useCategoryQuery(
+  const { isLoading: isLoadingCategory, data: categoryData } = useCategoryQuery(
     {
       id: params.categoryId as string,
     },
@@ -29,28 +27,17 @@ export default function AdminCategoryCreatePage() {
 
   const onSubmitHandler = async (data: FormDataDishCategory) => {
     try {
-      const response = await api.put(
-        `/dish-category/${params.categoryId}`,
-        {
-          ...data,
-
-          file: data.file,
+      const response = await api.put(`/dish-category/${params.categoryId}`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        },
-      )
+      })
 
-      toast.success('Sucessfully updated the dish')
+      toast.success('Successfully updated the dish category')
 
       if (response.status === 201) {
-        console.log('Dish updated successfully:', response.data)
-        // router.push('/admin/dishes')
+        router.push('/admin/categories')
       }
-
-      console.log('Response:', response)
     } catch (error) {
       console.error('Error submitting form:', error)
     }

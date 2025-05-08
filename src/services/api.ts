@@ -7,11 +7,12 @@ if (!process.env.NEXT_PUBLIC_BACK_END_URL) {
 }
 // Create axios instance with base URL from environment variables
 const api = axios.create({
-  baseURL: 'https://api.gok-oguz.md',
+  baseURL: process.env.NEXT_PUBLIC_BACK_END_URL,
   timeout: 10000, // 10 seconds timeout
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
+
     // Lang: i18n.language,
   },
   withCredentials: true,

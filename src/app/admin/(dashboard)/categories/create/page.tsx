@@ -10,29 +10,17 @@ export default function AdminCategoryCreatePage() {
 
   const onSubmitHandler = async (data: FormDataDishCategory) => {
     try {
-      console.log('Form submitted:', data)
-
-      const response = await api.post(
-        `/dish-category`,
-        {
-          ...data,
-          file: data.file,
+      const response = await api.post(`/dish-category`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        },
-      )
+      })
 
-      toast.success('Dish successfully created')
+      toast.success('Dish category successfully created')
 
       if (response.status === 201) {
-        console.log('Category successfully created', response.data)
         router.push('/admin/categories')
       }
-
-      console.log('Response:', response)
     } catch (error) {
       console.error('Error submitting form:', error)
     }

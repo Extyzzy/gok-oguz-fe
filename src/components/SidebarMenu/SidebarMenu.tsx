@@ -26,7 +26,7 @@ const SidebarMenu = () => {
               },
             )}
           >
-{item?.image && (
+            {item?.image && (
               <Image
                 src={process.env.NEXT_PUBLIC_BACK_END_URL + item.image}
                 width={22}
