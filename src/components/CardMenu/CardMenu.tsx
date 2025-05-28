@@ -25,8 +25,8 @@ const CardMenu = ({ imagePath, weight, price, slug, onPressImage, ...props }: Ca
           src={process.env.NEXT_PUBLIC_BACK_END_URL + imagePath}
           alt={slug}
           className='h-[150px] sm:h-[200px] w-full object-cover'
-          width={65}
-          height={50}
+          width={300} // example width, adjust to your actual layout
+          height={200}
           placeholder='blur'
           blurDataURL='/assets/svg/peppers.svg'
           onClick={() => onPressImage()}
