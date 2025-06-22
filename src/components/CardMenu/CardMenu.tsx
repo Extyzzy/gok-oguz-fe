@@ -27,7 +27,7 @@ const CardMenu = ({ imagePath, weight, price, slug, onClickCard, ...props }: Car
         <Image
           src={process.env.NEXT_PUBLIC_BACK_END_URL + imagePath}
           alt={slug}
-          className='h-[150px] sm:h-[200px] w-full object-cover'
+          className='h-[190px] sm:h-[200px] w-full object-cover'
           width={300} // example width, adjust to your actual layout
           height={200}
           placeholder='blur'
@@ -37,7 +37,7 @@ const CardMenu = ({ imagePath, weight, price, slug, onClickCard, ...props }: Car
         <Image
           src='/assets/svg/peppers.svg'
           alt={slug}
-          className='h-[150px] sm:h-[200px] w-full border-b  border-[#882727]'
+          className='h-[190px] sm:h-[200px] w-full border-b  border-[#882727]'
           width={65}
           height={50}
         />

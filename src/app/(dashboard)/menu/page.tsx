@@ -26,7 +26,7 @@ const Menu = () => {
       <Title classNames='text-center'>{t('menu.title')}</Title>
       <div className='flex lg:gap-8 mt-2 '>
         <SidebarMenu />
-        <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 w-[90%] mx-auto'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 w-[88%] mx-auto'>
           {dishes?.map((item, index) => (
             <CardMenu
               key={index}
@@ -52,14 +52,25 @@ const Menu = () => {
               <div className='w-full'>
                 {/* Image container with no fixed height */}
                 <Skeleton isLoaded={imageLoaded} className='w-full rounded-xl'>
-                  <Image
-                    src={process.env.NEXT_PUBLIC_BACK_END_URL + item.image}
-                    alt='preview'
-                    width={800}
-                    height={600}
-                    className='w-full h-auto rounded-xl'
-                    onLoad={() => setImageLoaded(true)}
-                  />
+                  {(item.image && (
+                    <Image
+                      src={process.env.NEXT_PUBLIC_BACK_END_URL + item.image}
+                      alt='preview'
+                      width={800}
+                      height={600}
+                      className='w-full h-auto rounded-xl'
+                      onLoad={() => setImageLoaded(true)}
+                    />
+                  )) || (
+                    <Image
+                      src='/assets/svg/peppers.svg'
+                      alt='preview'
+                      width={800}
+                      height={600}
+                      className='w-full h-auto rounded-xl'
+                      onLoad={() => setImageLoaded(true)}
+                    />
+                  )}
                 </Skeleton>
 
                 <p className='italic text-md mt-2'>
