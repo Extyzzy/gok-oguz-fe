@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['straus.s3.amazonaws.com'],
+    domains: ['straus.s3.amazonaws.com', 'localhost'],
     remotePatterns: [
       {
         protocol: new URL(process.env.NEXT_PUBLIC_BACK_END_URL).protocol.replace(':', ''), // remove the trailing colon
