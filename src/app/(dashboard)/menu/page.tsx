@@ -10,10 +10,11 @@ import { Modal } from '@/components/modal/Modal'
 import { useModal } from '@/components/modal/useModal'
 import Image from 'next/image'
 import { useState } from 'react'
+import { Dish } from './[slug]/page'
 
 const Menu = () => {
-  const { t } = useTranslation()
-  const [image, setImage] = useState('')
+  const { t, i18n } = useTranslation()
+  const [item, setItem] = useState<Dish>()
 
   const { isOpen, onOpenChange, onOpen } = useModal()
   const { data: dishes } = usePublicDishesQuery()
@@ -28,22 +29,46 @@ const Menu = () => {
             <CardMenu
               key={index}
               imagePath={item.image}
-              onPressImage={() => {
-                setImage(item.image)
+              onClickCard={() => {
+                setItem(item)
                 onOpen()
               }}
               {...item}
             />
           ))}
         </div>
-        <Modal isOpen={isOpen} onChange={onOpenChange}>
-          <Image
-            fill
-            src={process.env.NEXT_PUBLIC_BACK_END_URL + image}
-            alt={'preview'}
-            className='object-contain'
-          />
-        </Modal>
+        {item && (
+          <Modal
+            isOpen={isOpen}
+            onChange={onOpenChange}
+            title={
+              //@ts-ignore
+              item[`name_${i18n.language}`]
+            }
+          >
+            {item && (
+              <div className='w-full h-auto'>
+                <Image
+                  fill
+                  src={process.env.NEXT_PUBLIC_BACK_END_URL + item.image}
+                  alt={'preview'}
+                  className='object-contain !static rounded-xl'
+                />
+
+                <p className='italic text-md mt-4'>
+                  {item.weight} gr / {item.price} mdl
+                </p>
+
+                <p className='text-md mt-4'>
+                  {
+                    //@ts-ignore
+                    item[`description_${i18n.language}`]
+                  }
+                </p>
+              </div>
+            )}
+          </Modal>
+        )}
         <SidebarMenuMobile />
       </div>
     </div>

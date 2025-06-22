@@ -12,14 +12,17 @@ interface CardMenuProps {
   description_ro: string
   description_en: string
   price: number
-  onPressImage: () => void
+  onClickCard: () => void
 }
 
-const CardMenu = ({ imagePath, weight, price, slug, onPressImage, ...props }: CardMenuProps) => {
+const CardMenu = ({ imagePath, weight, price, slug, onClickCard, ...props }: CardMenuProps) => {
   const { i18n } = useTranslation()
 
   return (
-    <div className='bg-beige hover:shadow rounded-2xl sm:h-[340px] h-auto border border-[#882727] overflow-hidden'>
+    <div
+      onClick={() => onClickCard()}
+      className='cursor-pointer bg-beige hover:shadow rounded-2xl sm:h-[340px] h-auto border border-[#882727] overflow-hidden'
+    >
       {(imagePath && (
         <Image
           src={process.env.NEXT_PUBLIC_BACK_END_URL + imagePath}
@@ -29,7 +32,6 @@ const CardMenu = ({ imagePath, weight, price, slug, onPressImage, ...props }: Ca
           height={200}
           placeholder='blur'
           blurDataURL='/assets/svg/peppers.svg'
-          onClick={() => onPressImage()}
         />
       )) || (
         <Image

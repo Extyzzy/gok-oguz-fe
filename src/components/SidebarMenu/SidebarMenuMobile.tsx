@@ -55,7 +55,7 @@ const SidebarMenuMobile = () => {
       {isOpen && (
         <div
           className={clsx(
-            'rounded-t-3xl bg-beige border border-[#882727] p-5 fixed bottom-[7.4rem] left-1/2  transform -translate-x-1/2 -translate-y w-[85%] pb-10',
+            'h-2/3 overflow-scroll rounded-t-3xl bg-beige border border-[#882727] p-5 fixed bottom-[7.4rem] left-1/2  transform -translate-x-1/2 -translate-y w-[85%] pb-10',
             {
               'rounded-t-3xl': isOpen,
             },
