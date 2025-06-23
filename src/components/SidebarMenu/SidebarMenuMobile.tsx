@@ -74,11 +74,10 @@ const SidebarMenuMobile = () => {
                 )}
               >
                 <Image
-                  src={item?.image}
+                  src={process.env.NEXT_PUBLIC_BACK_END_URL + item.image}
                   width={22}
                   height={22}
                   alt={item.slug}
-                  className='text-white'
                 />
                 <span>
                   {
