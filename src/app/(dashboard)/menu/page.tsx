@@ -19,6 +19,10 @@ const Menu = () => {
   const { isOpen, onOpenChange, onOpen } = useModal()
   const { data: dishes } = usePublicDishesQuery()
 
+  if (item?.image) {
+    console.log(process.env.NEXT_PUBLIC_BACK_END_URL + item.image)
+  }
+
   return (
     <div className='pt-2 mb-4 mx-2 sm:mx-0'>
       <Title classNames='text-center'>{t('menu.title')}</Title>
@@ -50,7 +54,7 @@ const Menu = () => {
               <div className='w-full'>
                 {/* Image container with no fixed height */}
 
-                {(item.image && (
+                {(item?.image && (
                   <Image
                     src={process.env.NEXT_PUBLIC_BACK_END_URL + item.image}
                     alt='preview'
