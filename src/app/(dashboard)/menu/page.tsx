@@ -56,7 +56,7 @@ const Menu = () => {
 
                 {(item?.image && (
                   <Image
-                    src={process.env.NEXT_PUBLIC_BACK_END_URL + item.image}
+                    src={encodeURI(process.env.NEXT_PUBLIC_BACK_END_URL + item.image)}
                     alt='preview'
                     width={800}
                     height={600}
