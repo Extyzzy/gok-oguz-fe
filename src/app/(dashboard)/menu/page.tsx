@@ -11,12 +11,10 @@ import { useModal } from '@/components/modal/useModal'
 import Image from 'next/image'
 import { useState } from 'react'
 import { Dish } from './[slug]/page'
-import { Skeleton } from '@nextui-org/react'
 
 const Menu = () => {
   const { t, i18n } = useTranslation()
   const [item, setItem] = useState<Dish>()
-  const [imageLoaded, setImageLoaded] = useState(false)
 
   const { isOpen, onOpenChange, onOpen } = useModal()
   const { data: dishes } = usePublicDishesQuery()
@@ -51,27 +49,24 @@ const Menu = () => {
             {item && (
               <div className='w-full'>
                 {/* Image container with no fixed height */}
-                <Skeleton isLoaded={imageLoaded} className='w-full rounded-xl'>
-                  {(item.image && (
-                    <Image
-                      src={process.env.NEXT_PUBLIC_BACK_END_URL + item.image}
-                      alt='preview'
-                      width={800}
-                      height={600}
-                      className='w-full h-auto rounded-xl'
-                      onLoad={() => setImageLoaded(true)}
-                    />
-                  )) || (
-                    <Image
-                      src='/assets/svg/peppers.svg'
-                      alt='preview'
-                      width={800}
-                      height={600}
-                      className='w-full h-auto rounded-xl'
-                      onLoad={() => setImageLoaded(true)}
-                    />
-                  )}
-                </Skeleton>
+
+                {(item.image && (
+                  <Image
+                    src={process.env.NEXT_PUBLIC_BACK_END_URL + item.image}
+                    alt='preview'
+                    width={800}
+                    height={600}
+                    className='w-full h-auto rounded-xl'
+                  />
+                )) || (
+                  <Image
+                    src='/assets/svg/peppers.svg'
+                    alt='preview'
+                    width={800}
+                    height={600}
+                    className='w-full h-auto rounded-xl'
+                  />
+                )}
 
                 <p className='italic text-md mt-2'>
                   {item.weight} gr / {item.price} mdl
