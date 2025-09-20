@@ -42,6 +42,8 @@ const Menu: FC<MenuProps> = ({ params }) => {
 
   if (item?.image) {
     console.log(process.env.NEXT_PUBLIC_BACK_END_URL + item.image)
+
+    console.log(`encodeURI`, encodeURI(process.env.NEXT_PUBLIC_BACK_END_URL + item.image))
   }
 
   return (
@@ -78,7 +80,7 @@ const Menu: FC<MenuProps> = ({ params }) => {
               {/* Image container with no fixed height */}
 
               {(item?.image && (
-                <Image
+                <img
                   src={encodeURI(process.env.NEXT_PUBLIC_BACK_END_URL + item.image)}
                   alt='preview'
                   width={800}
