@@ -55,7 +55,7 @@ const Menu = () => {
                 {/* Image container with no fixed height */}
 
                 {(item?.image && (
-                  <Image
+                  <img
                     src={encodeURI(process.env.NEXT_PUBLIC_BACK_END_URL + item.image)}
                     alt='preview'
                     width={800}
