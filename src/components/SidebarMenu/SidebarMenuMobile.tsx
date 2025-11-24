@@ -16,7 +16,15 @@ const SidebarMenuMobile = () => {
 
   const currentSlug = pathname.split('/').filter(Boolean).pop()
 
-  const selectedItem = categories?.find((category) => category.slug === currentSlug)
+  // Sort categories by orderNumber, then by id as fallback
+  const sortedCategories = categories
+    ? [...categories].sort((a, b) => {
+        const orderDiff = (a.orderNumber ?? 0) - (b.orderNumber ?? 0)
+        return orderDiff !== 0 ? orderDiff : a.id - b.id
+      })
+    : []
+
+  const selectedItem = sortedCategories.find((category) => category.slug === currentSlug)
 
   return (
     <div>
@@ -61,7 +69,7 @@ const SidebarMenuMobile = () => {
             },
           )}
         >
-          {categories?.map((item, index) => {
+          {sortedCategories.map((item, index) => {
             return (
               <div
                 key={index}

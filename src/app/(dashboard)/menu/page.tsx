@@ -19,6 +19,14 @@ const Menu = () => {
   const { isOpen, onOpenChange, onOpen } = useModal()
   const { data: dishes } = usePublicDishesQuery()
 
+  // Sort dishes by orderNumber, then by id as fallback
+  const sortedDishes = dishes
+    ? [...dishes].sort((a, b) => {
+        const orderDiff = (a.orderNumber ?? 0) - (b.orderNumber ?? 0)
+        return orderDiff !== 0 ? orderDiff : Number(a.id) - Number(b.id)
+      })
+    : []
+
   if (item?.image) {
     console.log(process.env.NEXT_PUBLIC_BACK_END_URL + item.image)
   }
@@ -29,7 +37,7 @@ const Menu = () => {
       <div className='flex lg:gap-8 mt-2 '>
         <SidebarMenu />
         <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 w-[88%] mx-auto'>
-          {dishes?.map((item, index) => (
+          {sortedDishes.map((item, index) => (
             <CardMenu
               key={index}
               imagePath={item.image}

@@ -48,12 +48,18 @@ export default function AdminCategoriesPage() {
   }
 
   const filteredCategories = useMemo(() => {
-    if (!debouncedSearchTerm.trim()) return categories || []
-    return (
-      categories?.filter((cat) =>
-        cat.name_ru.toLowerCase().includes(debouncedSearchTerm.toLowerCase()),
-      ) || []
-    )
+    // Create a copy to avoid mutating the original array
+    const cats = [...(categories || [])]
+    const filtered = !debouncedSearchTerm.trim()
+      ? cats
+      : cats.filter((cat) =>
+          cat.name_ru.toLowerCase().includes(debouncedSearchTerm.toLowerCase()),
+        )
+    // Sort by orderNumber, then by id as fallback (create a new sorted array)
+    return [...filtered].sort((a, b) => {
+      const orderDiff = (a.orderNumber ?? 0) - (b.orderNumber ?? 0)
+      return orderDiff !== 0 ? orderDiff : a.id - b.id
+    })
   }, [debouncedSearchTerm, categories])
 
   const handleDelete = (id: string) => {
@@ -94,14 +100,14 @@ export default function AdminCategoriesPage() {
 
       <Table aria-label='Categories table'>
         <TableHeader>
-          <TableColumn>ID</TableColumn>
+          <TableColumn>ORDER</TableColumn>
           <TableColumn>CATEGORY NAME</TableColumn>
           <TableColumn>ACTIONS</TableColumn>
         </TableHeader>
         <TableBody>
           {filteredCategories.map((category) => (
             <TableRow key={category.id}>
-              <TableCell>{category.id}</TableCell>
+              <TableCell>{category.orderNumber ?? 0}</TableCell>
               <TableCell>{category.name_ru}</TableCell>
               <TableCell>
                 <div className='flex gap-x-4'>

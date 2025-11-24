@@ -12,9 +12,17 @@ const SidebarMenu = () => {
 
   const { data: categories, isLoading } = useCategoriesQuery()
 
+  // Sort categories by orderNumber, then by id as fallback
+  const sortedCategories = categories
+    ? [...categories].sort((a, b) => {
+        const orderDiff = (a.orderNumber ?? 0) - (b.orderNumber ?? 0)
+        return orderDiff !== 0 ? orderDiff : a.id - b.id
+      })
+    : []
+
   return (
     <div className='md:block h-[500px] sticky top-24 hidden border border-[#882727] rounded-2xl p-5 min-w-[258px]'>
-      {categories?.map((item, index) => {
+      {sortedCategories.map((item, index) => {
         return (
           <div
             key={index}

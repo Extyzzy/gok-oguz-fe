@@ -17,14 +17,19 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Select,
+  SelectItem,
 } from '@nextui-org/react'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
+import { useCategoriesQuery } from '@/queries/useCategoriesQuery'
 
 export default function AdminDishesPage() {
   const { data: dishes, isLoading } = useDishesQuery()
+  const { data: categories } = useCategoriesQuery()
   const [searchTerm, setSearchTerm] = useState('')
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
   const { mutate: deleteDish, isPending } = useDeleteDishMutation({
     onSuccess: () => {
@@ -47,13 +52,31 @@ export default function AdminDishesPage() {
   }
 
   const filteredDishes = useMemo(() => {
-    if (!debouncedSearchTerm.trim()) return dishes || []
-    return (
-      dishes?.filter((dish) =>
+    // Create a copy of the dishes array to avoid mutating the original
+    let dishList = [...(dishes || [])]
+
+    // Filter by category
+    if (selectedCategory !== 'all') {
+      dishList = dishList.filter(
+        (dish) =>
+          dish.category_id?.toString() === selectedCategory ||
+          dish.category?.id?.toString() === selectedCategory,
+      )
+    }
+
+    // Filter by search term
+    if (debouncedSearchTerm.trim()) {
+      dishList = dishList.filter((dish) =>
         dish.name_ru.toLowerCase().includes(debouncedSearchTerm.toLowerCase()),
-      ) || []
-    )
-  }, [debouncedSearchTerm, dishes])
+      )
+    }
+
+    // Sort by orderNumber, then by id as fallback (create a new sorted array)
+    return [...dishList].sort((a, b) => {
+      const orderDiff = (a.orderNumber ?? 0) - (b.orderNumber ?? 0)
+      return orderDiff !== 0 ? orderDiff : Number(a.id) - Number(b.id)
+    })
+  }, [debouncedSearchTerm, dishes, selectedCategory])
 
   if (isLoading) return <Spinner size='lg' />
   if (!dishes) return <div>No dishes found</div>
@@ -67,30 +90,64 @@ export default function AdminDishesPage() {
         </Button>
       </div>
 
-      <Input
-        type='text'
-        placeholder='Search by name...'
-        value={searchTerm}
-        onChange={handleSearchChange}
-        className='mb-4 max-w-md'
-        endContent={
-          searchTerm && (
-            <button
-              onClick={() => {
-                setSearchTerm('')
-                setDebouncedSearchTerm('')
-              }}
-              className='text-gray-500 hover:text-gray-700'
-            >
-              ✕
-            </button>
-          )
-        }
-      />
+      <div className='flex gap-4 mb-4 flex-wrap'>
+        <Input
+          type='text'
+          placeholder='Search by name...'
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className='max-w-md'
+          endContent={
+            searchTerm && (
+              <button
+                onClick={() => {
+                  setSearchTerm('')
+                  setDebouncedSearchTerm('')
+                }}
+                className='text-gray-500 hover:text-gray-700'
+              >
+                ✕
+              </button>
+            )
+          }
+        />
+        <Select
+          label='Filter by Category'
+          placeholder='Select a category'
+          selectedKeys={selectedCategory !== 'all' ? [selectedCategory] : []}
+          onSelectionChange={(keys) => {
+            const selected = Array.from(keys)[0] as string
+            setSelectedCategory(selected || 'all')
+          }}
+          className='max-w-xs'
+          selectionMode='single'
+        >
+          <SelectItem key='all' value='all'>
+            All Categories
+          </SelectItem>
+          {categories?.map((category) => (
+            <SelectItem key={category.id.toString()} value={category.id.toString()}>
+              {category.name_ru}
+            </SelectItem>
+          ))}
+        </Select>
+        {(selectedCategory !== 'all' || searchTerm) && (
+          <Button
+            variant='light'
+            onClick={() => {
+              setSelectedCategory('all')
+              setSearchTerm('')
+              setDebouncedSearchTerm('')
+            }}
+          >
+            Clear Filters
+          </Button>
+        )}
+      </div>
 
       <Table aria-label='Dishes table'>
         <TableHeader>
-          <TableColumn>ID</TableColumn>
+          <TableColumn>ORDER</TableColumn>
           <TableColumn>NAME</TableColumn>
           <TableColumn>CATEGORY NAME</TableColumn>
           <TableColumn>ACTIONS</TableColumn>
@@ -98,7 +155,7 @@ export default function AdminDishesPage() {
         <TableBody>
           {filteredDishes.map((dish) => (
             <TableRow key={dish.id}>
-              <TableCell>{dish.id}</TableCell>
+              <TableCell>{dish.orderNumber ?? 0}</TableCell>
               <TableCell>{dish.name_ru}</TableCell>
               <TableCell>{dish.category.name_ru}</TableCell>
               <TableCell>

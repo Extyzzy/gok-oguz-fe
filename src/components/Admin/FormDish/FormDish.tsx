@@ -22,6 +22,7 @@ const DishSchema = z.object({
   weight: z.string().min(1, 'Weight is required'),
   price: z.string().regex(/^\d+(\.\d{1,2})?$/, 'Cost must be a valid number'),
   category_id: z.string().min(1, 'Category is required').optional(),
+  orderNumber: z.number().int().min(0).optional().default(0),
   image: z.string().optional(),
   file: z
     .instanceof(File)
@@ -136,6 +137,15 @@ const FormDish = ({ initialValues, onSubmit, update }: FormDishProps) => {
           errorMessage={form.formState.errors.price?.message}
           isInvalid={!!form.formState.errors.price}
           {...form.register('price')}
+        />
+
+        <Input
+          label='Order Number'
+          type='number'
+          placeholder='Enter the order number (lower numbers appear first)'
+          errorMessage={form.formState.errors.orderNumber?.message}
+          isInvalid={!!form.formState.errors.orderNumber}
+          {...form.register('orderNumber', { valueAsNumber: true })}
         />
 
         <Controller

@@ -17,6 +17,7 @@ export type Dish = {
   image: string
   category_id: string
   category: DishCategory
+  orderNumber: number
 }
 
 type UseDishesQuery = (queryOptions?: { enabled?: boolean }) => UseQueryResult<Dish[], AxiosError>

@@ -10,6 +10,7 @@ export type DishCategory = {
   name_ro: string
   name_ru: string
   image: string
+  orderNumber: number
 }
 
 type UseCategoriesQuery = (queryOptions?: {

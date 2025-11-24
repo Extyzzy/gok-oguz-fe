@@ -21,10 +21,6 @@ export default function AdminCategoryCreatePage() {
     },
   )
 
-  if (isLoadingCategory) {
-    return <div>Loading...</div>
-  }
-
   const onSubmitHandler = async (data: FormDataDishCategory) => {
     try {
       const response = await api.put(`/dish-category/${params.categoryId}`, data, {
@@ -43,14 +39,18 @@ export default function AdminCategoryCreatePage() {
     }
   }
 
+  if (isLoadingCategory || !categoryData) {
+    return <div>Loading...</div>
+  }
+
   return (
     <FormCategory
+      key={categoryData.id}
       update
-      initialValues={
-        {
-          ...categoryData,
-        } as FormDataDishCategory
-      }
+      initialValues={{
+        ...categoryData,
+        orderNumber: categoryData.orderNumber ?? 0,
+      }}
       onSubmit={onSubmitHandler}
     />
   )

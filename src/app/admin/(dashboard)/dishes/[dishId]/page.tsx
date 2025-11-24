@@ -43,6 +43,7 @@ export default function AdminDishCreatePage() {
           category_id: Number(data.category_id),
           weight: Number(data.weight),
           price: Number(data.price),
+          orderNumber: Number(data.orderNumber) || 0,
           file: data.file,
         },
         {
