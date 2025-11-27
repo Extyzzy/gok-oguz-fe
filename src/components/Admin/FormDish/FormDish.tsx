@@ -22,7 +22,7 @@ const DishSchema = z.object({
   weight: z.string().min(1, 'Weight is required'),
   price: z.string().regex(/^\d+(\.\d{1,2})?$/, 'Cost must be a valid number'),
   category_id: z.string().min(1, 'Category is required').optional(),
-  orderNumber: z.number().int().min(0).optional().default(0),
+  orderNumber: z.number().int().min(0),
   image: z.string().optional(),
   file: z
     .instanceof(File)
@@ -56,7 +56,7 @@ const FormDish = ({ initialValues, onSubmit, update }: FormDishProps) => {
 
   const form = useForm<z.infer<typeof DishSchema>>({
     resolver: zodResolver(DishSchema),
-    defaultValues: { ...initialValues },
+    defaultValues: { orderNumber: 0, ...initialValues },
   })
 
   const onSubmitHandler = useCallback(onSubmit, [onSubmit])

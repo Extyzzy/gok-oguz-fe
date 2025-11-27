@@ -62,3 +62,32 @@ export const getPublicDishes = () => {
 export const getPublicDishesByCategory = (slug: string) => {
   return api.get(`dish-category/public/${slug}/dishes`).then(({ data }) => data)
 }
+
+export const getPageContent = async () => {
+  return api.get(`page-content`).then(({ data }) => data)
+}
+
+export const updatePageContent = async (data: any) => {
+  return api.put(`page-content`, data).then(({ data: response }) => response)
+}
+
+export const getPublicPageContent = (lang?: string) => {
+  return api
+    .get(`page-content/public`, {
+      headers: {
+        lang: lang || 'ro',
+      },
+    })
+    .then(({ data }) => data)
+}
+
+export const uploadPageContentImage = async (file: File) => {
+  const formData = new FormData()
+  formData.append('file', file)
+  const { data } = await api.post(`page-content/upload-image`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+  return data
+}

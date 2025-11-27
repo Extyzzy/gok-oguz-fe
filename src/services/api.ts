@@ -22,12 +22,17 @@ const api = axios.create({
 //   api.defaults.headers['lang'] = lng
 // })
 
-// Request interceptor to add auth token to headers
+// Request interceptor to add auth token and language to headers
 api.interceptors.request.use((config) => {
   const { 'auth.token': token } = parseCookies()
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
+  }
+
+  // Add language header for public endpoints
+  if (i18n.language) {
+    config.headers.Lang = i18n.language
   }
 
   return config

@@ -31,6 +31,15 @@ export default function AdminDishesPage() {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
+  const categoryOptions = useMemo(() => {
+    const options =
+      categories?.map((category) => ({
+        key: category.id.toString(),
+        label: category.name_ru,
+      })) ?? []
+    return [{ key: 'all', label: 'All Categories' }, ...options]
+  }, [categories])
+
   const { mutate: deleteDish, isPending } = useDeleteDishMutation({
     onSuccess: () => {
       toast.success('Deleted successfully')
@@ -114,22 +123,20 @@ export default function AdminDishesPage() {
         <Select
           label='Filter by Category'
           placeholder='Select a category'
-          selectedKeys={selectedCategory !== 'all' ? [selectedCategory] : []}
+          selectedKeys={[selectedCategory]}
           onSelectionChange={(keys) => {
             const selected = Array.from(keys)[0] as string
             setSelectedCategory(selected || 'all')
           }}
           className='max-w-xs'
           selectionMode='single'
+          items={categoryOptions}
         >
-          <SelectItem key='all' value='all'>
-            All Categories
-          </SelectItem>
-          {categories?.map((category) => (
-            <SelectItem key={category.id.toString()} value={category.id.toString()}>
-              {category.name_ru}
+          {(item) => (
+            <SelectItem key={item.key} value={item.key}>
+              {item.label}
             </SelectItem>
-          ))}
+          )}
         </Select>
         {(selectedCategory !== 'all' || searchTerm) && (
           <Button

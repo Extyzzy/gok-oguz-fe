@@ -13,7 +13,7 @@ const CategorySchema = z.object({
   name_ro: z.string().min(1, 'Name is required'),
   name_ru: z.string().min(1, 'Name is required'),
   image: z.string().optional(),
-  orderNumber: z.number().int().min(0).optional().default(0),
+  orderNumber: z.number().int().min(0),
   file: z
     .instanceof(File)
     .optional()
@@ -44,7 +44,7 @@ const FormCategory = ({ initialValues, onSubmit, update }: FormDishProps) => {
 
   const form = useForm<z.infer<typeof CategorySchema>>({
     resolver: zodResolver(CategorySchema),
-    defaultValues: { ...initialValues },
+    defaultValues: { orderNumber: 0, ...initialValues },
   })
 
   const onSubmitHandler = (data: FormDataDishCategory) =>
