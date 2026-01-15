@@ -32,20 +32,39 @@ export default function AdminDishCreatePage() {
     return <div>Loading...</div>
   }
 
+  const buildDishFormData = (data: FormDataDish) => {
+    const formData = new FormData()
+
+    formData.append('slug', data.slug)
+    formData.append('name_en', data.name_en)
+    formData.append('name_ro', data.name_ro)
+    formData.append('name_ru', data.name_ru)
+    formData.append('description_en', data.description_en)
+    formData.append('description_ro', data.description_ro)
+    formData.append('description_ru', data.description_ru)
+    formData.append('weight', String(data.weight))
+    formData.append('price', String(data.price))
+    formData.append('orderNumber', String(data.orderNumber ?? 0))
+
+    if (data.category_id) {
+      formData.append('category_id', String(data.category_id))
+    }
+
+    if (data.file) {
+      formData.append('file', data.file)
+    }
+
+    return formData
+  }
+
   const onSubmitHandler = async (data: FormDataDish) => {
     try {
       console.log('Form submitted:', data)
 
+      const formData = buildDishFormData(data)
       const response = await api.put(
         `/dishes/${params.dishId}`,
-        {
-          ...data,
-          category_id: Number(data.category_id),
-          weight: Number(data.weight),
-          price: Number(data.price),
-          orderNumber: Number(data.orderNumber) || 0,
-          file: data.file,
-        },
+        formData,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
